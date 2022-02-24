@@ -24,7 +24,7 @@ export default function SettingsLayout({ children }) {
                         <fieldset>
                             <div className="subsettingsmainmenu">
 
-                                <Link href={{ pathname: './SubsettingsTemplate', query: { code: '1',path:'1' } }}>Nationality</Link>
+                                <Link as='Nationality' href={{ pathname: './SubsettingsTemplate', query: { code: '1',path:'1' } }}>Nationality</Link>
                                 <Link  href={{ pathname: './SubsettingsTemplate', query: { code: '2',path:'1' } }}>Religion</Link>
                                 <Link   href={{ pathname: './SubsettingsTemplate', query: { code: '3',path:'1' } }}>Home Country</Link>
                             </div>
@@ -47,7 +47,7 @@ export default function SettingsLayout({ children }) {
                     <div className="subsettingsheader">
                         <fieldset>
                             <div className="subsettingsmainmenu">
-                                <Link as='Positions' href={{ pathname: './SubsettingsTemplate', query: { code: '4', path: '2' } }}>Positions </Link>
+                                <Link  href={{ pathname: './SubsettingsTemplate', query: { code: '4', path: '2' } }}>Positions </Link>
 
 
                             </div>

@@ -26,11 +26,11 @@ export default function MasterSettingsLayout({ children }) {
                 <fieldset>
                     <div className="settingsmainmenu">
 
-                        <Link href={{ pathname: './SettingsTemplate', query: { path: '1' } }}  >Personnel Settings</Link>
-                        <Link href={{ pathname: './SettingsTemplate', query: { path: '2' },shallow:true }} >EmployementSettings</Link>
-                        <Link  as='FinancialSettings' href={{ pathname: './SettingsTemplate', query: { path: '3' } }}>Financial Settings</Link>
+                        <Link as='Personnel Settings' href={{ pathname: './SettingsTemplate', query: { path: '1' } }}  >Personnel Settings</Link>
+                        <Link as='EmployementSettings'href={{ pathname: './SettingsTemplate', query: { path: '2' } }} >EmployementSettings</Link>
+                        <Link as='FinancialSettings' href={{ pathname: './SettingsTemplate', query: { path: '3' } }}>Financial Settings</Link>
                         <Link as='ClassificationSettings' href={{ pathname: './SettingsTemplate', query: { path: '4' } }}>Classifications Settings</Link>
-                        <Link as='StructureSettings' href={{ pathname: './SettingsTemplate', query: { path: '5' } }}>StructureSettings</Link>
+                      
 
                     </div>
 
@@ -51,9 +51,9 @@ export default function MasterSettingsLayout({ children }) {
                                 <fieldset>
                                     <div className="subsettingsmainmenu">
 
-                                        <Link href={{ pathname: './mastersettings/SubsettingsTemplate', query: { code: '1', path: '1' } }}>Nationality</Link>
-                                        <Link href={{ pathname: './mastersettings/SubsettingsTemplate', query: { code: '2', path: '1' } }}>Religion</Link>
-                                        <Link href={{ pathname: './SubsettingsTemplate', query: { code: '3', path: '1' } }}>Home Country</Link>
+                                        <Link  as='Nationality' href={{ pathname: './SubsettingsTemplate', query: { code: '1', path: '1' } }}>Nationality</Link>
+                                        <Link  as='Religion'href={{ pathname: './SubsettingsTemplate', query: { code: '2', path: '1' } }}>Religion</Link>
+                                        <Link  as='HomeCountry'href={{ pathname: './SubsettingsTemplate', query: { code: '3', path: '1' } }}>Home Country</Link>
                                     </div>
                                 </fieldset>
 

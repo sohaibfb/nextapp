@@ -22,7 +22,7 @@ export default function Home() {
           <div className="bodydata">
            
          
-           
+           <h1>Welcome Home My friend</h1>
             
           </div>
         
