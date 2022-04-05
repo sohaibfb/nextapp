@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Link from 'next/link'
 import { useRouter } from "next/router";
-import SettingsLayout from './SettingsLayout';
+import SettingsLayout from '../pages/temp/SettingsLayout';
 
 
 
@@ -10,7 +10,7 @@ import SettingsLayout from './SettingsLayout';
 
 export default function MasterSettingsLayout({ children }) {
 
-    console.log("Master Setting style");
+   
     const router = useRouter();
     const path = router.query.path;
 
@@ -18,7 +18,7 @@ export default function MasterSettingsLayout({ children }) {
 
 
         //  <div className="bodydata">
-        <div className='bodydata'>
+        
 
 
 
@@ -26,10 +26,12 @@ export default function MasterSettingsLayout({ children }) {
                 <fieldset>
                     <div className="settingsmainmenu">
 
-                        <Link as='Personnel Settings' href={{ pathname: './SettingsTemplate', query: { path: '1' } }}  >Personnel Settings</Link>
-                        <Link as='EmployementSettings'href={{ pathname: './SettingsTemplate', query: { path: '2' } }} >EmployementSettings</Link>
-                        <Link as='FinancialSettings' href={{ pathname: './SettingsTemplate', query: { path: '3' } }}>Financial Settings</Link>
-                        <Link as='ClassificationSettings' href={{ pathname: './SettingsTemplate', query: { path: '4' } }}>Classifications Settings</Link>
+                        
+                        <Link  as='Nationality' href={{ pathname: './SubsettingsTemplate', query: { code: '1', path: '1' } }}><a title='MenuLinks' id='PersonalSettingsLink'>Personnel Settings</a></Link>
+                        <Link as='Positions' href={{ pathname: './SubsettingsTemplate', query: { code: '4', path: '2' } }}><a title='MenuLinks'   id='EmploymentSettingsLink'>EmploymentSettings</a></Link>
+                        <Link as='Allowances' href={{ pathname: './SubsettingsTemplate', query: { code: '8', path: '3' } }}><a title='MenuLinks' id='FinancialSettingsLink'>Financial Settings</a></Link>
+                        <Link as='Functions' href={{ pathname: './SubsettingsTemplate', query: { code: '5', path: '4' } }}><a title='MenuLinks' id='StructureSettingsLink'>Structure Settings</a></Link>
+                        
                       
 
                     </div>
@@ -51,9 +53,9 @@ export default function MasterSettingsLayout({ children }) {
                                 <fieldset>
                                     <div className="subsettingsmainmenu">
 
-                                        <Link  as='Nationality' href={{ pathname: './SubsettingsTemplate', query: { code: '1', path: '1' } }}>Nationality</Link>
-                                        <Link  as='Religion'href={{ pathname: './SubsettingsTemplate', query: { code: '2', path: '1' } }}>Religion</Link>
-                                        <Link  as='HomeCountry'href={{ pathname: './SubsettingsTemplate', query: { code: '3', path: '1' } }}>Home Country</Link>
+                                        <Link  as='Nationality' href={{ pathname: './SubsettingsTemplate', query: { code: '1', path: '1' } }}><a title='MenuLinks' id='NationalityLink'>Nationality</a></Link>
+                                        <Link  as='Religion'href={{ pathname: './SubsettingsTemplate', query: { code: '2', path: '1' } }}><a title='MenuLinks' id='ReligionLink'>Religion</a></Link>
+                                        <Link  as='HomeCountry'href={{ pathname: './SubsettingsTemplate', query: { code: '3', path: '1' } }}><a title='MenuLinks' id='HomeCountryLink'>Home Country</a></Link>
                                     </div>
                                 </fieldset>
 
@@ -74,7 +76,7 @@ export default function MasterSettingsLayout({ children }) {
                             <div className="subsettingsheader">
                                 <fieldset>
                                     <div className="subsettingsmainmenu">
-                                        <Link as='Positions' href={{ pathname: './SubsettingsTemplate', query: { code: '4', path: '2' } }}>Positions </Link>
+                                        <Link as='Positions' href={{ pathname: './SubsettingsTemplate', query: { code: '4', path: '2' } }}><a title='MenuLinks' id='PositionsLink'>Positions </a></Link>
 
 
                                     </div>
@@ -92,7 +94,7 @@ export default function MasterSettingsLayout({ children }) {
                                     <fieldset>
                                         <div className="subsettingsmainmenu">
 
-                                            <Link as='Allowances' href={{ pathname: './SubsettingsTemplate', query: { code: '8', path: '3' } }}>Allowances</Link>
+                                            <Link as='Allowances' href={{ pathname: './SubsettingsTemplate', query: { code: '8', path: '3' } }}><a title='MenuLinks' id='AllowancesLink'>Allowances</a></Link>
                                         </div>
                                     </fieldset>
                                     <div className='subsettingsbody'>{children}</div>
@@ -110,9 +112,9 @@ export default function MasterSettingsLayout({ children }) {
                                 <div className="subsettingsheader">
                                     <fieldset>
                                         <div className="subsettingsmainmenu">
-                                            <Link as='Functions' href={{ pathname: './SubsettingsTemplate', query: { code: '5', path: '4' } }}>Functions </Link>
-                                            <Link as='Sections' href={{ pathname: './SubsettingsTemplate', query: { code: '6', path: '4' } }}>Sections</Link>
-                                            <Link as='Locations' href={{ pathname: './SubsettingsTemplate', query: { code: '7', path: '4' } }}>Locations</Link>
+                                            <Link as='Functions' href={{ pathname: './SubsettingsTemplate', query: { code: '5', path: '4' } }}><a title='MenuLinks' id='FunctionsLink'>Functions </a></Link>
+                                            <Link as='Sections' href={{ pathname: './SubsettingsTemplate', query: { code: '6', path: '4' } }}><a title='MenuLinks' id='SectionsLink'>Sections</a></Link>
+                                            <Link as='Locations' href={{ pathname: './SubsettingsTemplate', query: { code: '7', path: '4' } }}><a title='MenuLinks' id='LocationsLink'>Locations</a></Link>
                                         </div>
                                     </fieldset>
                                     <div className='subsettingsbody'>{children}</div>
@@ -165,7 +167,7 @@ export default function MasterSettingsLayout({ children }) {
 
 
 
-        </div>
+       
 
 
 

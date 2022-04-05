@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import SettingsTemplate from '../pages/Settings/SettingsTemplate';
+import SettingsTemplate from '../pages/temp/SettingsTemplate';
 SettingsTemplate
 export default function HeaderPage({ children }) {
 
@@ -9,7 +9,7 @@ export default function HeaderPage({ children }) {
 
 
     <div className="headerrow">
-      <div className="mainmenu">
+      <div className="mainmenu" id='mainmenu'>
 
         <Link href="/">
           <a>Home</a>
@@ -21,8 +21,8 @@ export default function HeaderPage({ children }) {
           <button className="submenubtn">Settings</button>
           <div className="submenu-content">
             <Link href="/Settings/AdminSettings">Admin Settings</Link>
-            <Link href="/Settings/MasterSettings">MasterSettings</Link>
-            <Link as='Settings/Nationality'  href={{ pathname: "/Settings/SubsettingsTemplate", query: { code: '1', path: '1' } }}>Master Settings</Link>
+            {/*<Link href="/Settings/MasterSettings">MasterSettings</Link>*/}
+            <Link as='Settings/Nationality' href={{ pathname: "/Settings/SubsettingsTemplate", query: { code: '1', path: '1' } }}>Master Settings</Link>
             {/* <Link href="/Settings/StructureSettings">Structure Settings</Link>*/}
           </div>
 
@@ -31,7 +31,6 @@ export default function HeaderPage({ children }) {
 
         </div>
         <Link href="/EmployeeProfile"><a>Employee Profile</a></Link>
-        <a href="Employee Profile.html" target="mainshow">Employee Profile</a>
         <div className="submenu">
           <button className="submenubtn">Transactions</button>
           <div className="submenu-content">
@@ -51,7 +50,7 @@ export default function HeaderPage({ children }) {
       </div>
 
 
-      {/*<iframe src={"/LandingPage"} title='bodydata' name="mainshow" className="bodydata"> </iframe>*/}
+
 
 
       <div className='bodydata'>{children}</div>

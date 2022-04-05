@@ -1,10 +1,19 @@
 import React, { Component, useState, useEffect } from 'react';
 import { useRouter } from "next/router";
 import Image from 'next/image'
-import SettingsLayout from '../../components/SettingsLayout';
+import SettingsLayout from '../temp/SettingsLayout';
 import MasterSettingsLayout from '../../components/MasterSettingsLayout';
-import addSettingsImage from '../../components/Images/addsettings.jpg';
-import deleteSettingsImage from '../../components/Images/delete.png';
+import addSettingsImage from '../../public/Images/addsettings.jpg';
+import addSettingsImage2 from '../../public/Images/addsettings2.png';
+import addSettingsImage3 from '../../public/Images/addsettings3.png';
+import deleteSettingsImage from '../../public/Images/delete4.png';
+import deleteSettingsImagehover from '../../public/Images/deletehover.png';
+import updateLinksColor1 from '../../components/updateLinksColor1';
+import ClosePage from '../../components/ClosePage';
+import ShowDeleteOption from '../../components/ShowDeleteOption';
+import ClearSelectedCheckboxes from '../../components/ClearSelectedCheckboxes';
+import saveSettingsImage from '../../public/Images/save.png';
+
 
 
 
@@ -15,38 +24,46 @@ export default function SubsettingsTemplate({ posts }) {
   //const [posts1, setenglishname] = useState([]);
   const router = useRouter();
   const path = router.query.path;
-  var defaultcode=router.query.code;
-  const [checkbox,updatechecboxes]=useState("");
-  
-  useEffect(() => {
-   
-    clearcheckboxes();
+  var defaultcode = router.query.code;
+  const [checkbox, updatechecboxes] = useState("");
 
+  useEffect(() => {
+     // clearcheckboxes();
     
-     
-   })
- 
+    ClearSelectedCheckboxes('showhide');
+    updateLinksColor1(path, defaultcode);
+
+
+
+  })
+
 
 
   return (
-  
+
     <div className='subsettingsheader'>
-     
+
 
 
 
       <div className='actionbar' >
 
-        <Image src={addSettingsImage} onClick={addSettings} height={50} width={50} />
-        <div id='showhide' className='showhide'><Image src={deleteSettingsImage} onClick={deleteSettings} height={50} width={50} /></div>
-       
 
-        {/*<input id="addsetttingbtn" name="submit" type="submit" defaultValue="save" height={35} width={52} />*/}</div>
-      
+
+        <div className='img'><Image id='addimage' objectfit='contain' src={addSettingsImage3} onClick={addSettings}  /></div>
+        <div className='img'><Image id='showhide' className='showhide' objectfit='contain' src={deleteSettingsImage} onClick={deleteSettings} /></div>
+
+
+
+
+
+        {/*<input id="addsetttingbtn" name="submit" type="submit" defaultValue="save" height={35} width={52} />*/}
+        </div>
+
       <div id="myModal" className="modal">
 
         <div id="closeModal" className="modal-content">
-          <span className="close" onClick={close}>&times;</span>
+          <span className="close" onClick={() => ClosePage("myModal")}>&times;</span>
           <div><br></br>
             <form id='submitSettingsform' className="form-style-3" onSubmit={savesettings} method="post">
 
@@ -66,7 +83,9 @@ export default function SubsettingsTemplate({ posts }) {
 
               </fieldset>
 
-              <input name="submit" type="submit" />
+              
+              <div className='img'><input type="image" src='../../Images/save.png' ></input></div>
+             {/* <div className='img'><Image id='saveimage' className="showhide" objectfit='contain' src={saveSettingsImage}/></div>*/}
 
             </form>
 
@@ -80,19 +99,24 @@ export default function SubsettingsTemplate({ posts }) {
 
       </div>
       <input name="scode" id="scode" type="hidden" value={router.query.code} />
+     
 
       <table id="settings">
-        <tbody>
-          <tr>
+
+
+        <thead>
+          <tr >
+
             <th>del</th>
             <th>code</th>
             <th>English Description</th>
             <th>Arabic Description</th>
           </tr>
-
+        </thead>
+        <tbody>
           {posts.map((post) => (
             <tr>
-              <td>< input id='delete' name='delete[]' type={'checkbox'} onClick={checkedbox}  value={post.code}></input></td>
+              <td>< input id='delete' name='delete[]' type={'checkbox'} onClick={() => ShowDeleteOption('showhide','input[id="delete"]')} value={post.code}></input></td>
               <td>{post.code} </td>
 
 
@@ -117,7 +141,11 @@ export default function SubsettingsTemplate({ posts }) {
     </div>
   );
 
-  
+
+
+
+
+
   function addSettings() {
 
     console.log('basepath: ' + router.basePath);
@@ -132,104 +160,72 @@ export default function SubsettingsTemplate({ posts }) {
 
 
   }
-  function close() {
-
-    document.getElementById('myModal').style.display = 'none'
-
-  }
-
-  function checkedbox() {
-    var allCheckboxes = document.querySelectorAll('input[type=checkbox]')
-    var checkboxflag=false;
-
-    for(var i=0;i<allCheckboxes.length;i++){
-
-      checkboxflag||=allCheckboxes[i].checked
-     
-    }
-   
-
-    
-
-    if(checkboxflag==false){
-      
-      document.getElementById('showhide').style.visibility= 'hidden'
-
-    }
-
-    else
-    {
-      document.getElementById('showhide').style.visibility = 'visible'
-    }
-   
-
-
-    
 
 
 
-
-
-
-
-  }
+  
+  
 
   async function deleteSettings() {
-    var deleteArray = [];
-    var selectedChecked = document.querySelectorAll('input[type=checkbox]:checked')
-    for (var i = 0; i < selectedChecked.length; i++) {
-      deleteArray.push(selectedChecked[i].value);
-      console.log('selcted checkbox: ' + selectedChecked[i].value);
-
-    }
-
-    
-    const settingData = { code: router.query.code,deletesettingsarray:deleteArray };
-    console.log('Settings Dats: ' + settingData);
-    try {
-      const res = await fetch('http://sktest87.000webhostapp.com/deletesettings.php', {
-
-        method: 'post', // or 'PUT'
-        mode: 'cors',
-        cache: 'no-cache',
-        headers: {
-          'Content-Type': 'application/json',
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'Content-Type': 'multipart/form-data',
-          'Accept': 'application/json',
-          'Accept': 'application/x-www-form-urlencoded',
-          'Accept': 'multipart/form-data',
-          //'Access-Control-Allow-Origin': '*',
-          'User-Agent': 'ANYTHING_WILL_WORK_HERE'
-          //'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.62'
-        },
-        referrerPolicy: 'no-referrer',
-
-        body: JSON.stringify(settingData),
-
-      })
-
-      console.log('Settings Data: ' + settingData);
-      var posts = await res.text();
-      console.log('post Data: ' + posts);
-      if (posts != null) {
-        //document.getElementById('myModal').style.display = 'none'
-        //router.push(router.pathname.concat('?','code=',router.query.code,'&path=',router.query.path),router.asPath);
-        router.push({ pathname: router.pathname, query: { code: router.query.code, path: router.query.path } }, router.asPath);
-       
+    if (document.getElementById('showhide').style.opacity =="1") {
+      var deleteArray = [];
+      var selectedChecked = document.querySelectorAll('input[type=checkbox]:checked')
+      for (var i = 0; i < selectedChecked.length; i++) {
+        deleteArray.push(selectedChecked[i].value);
+        console.log('selcted checkbox: ' + selectedChecked[i].value);
 
       }
 
 
+      const settingData = { code: router.query.code, deletesettingsarray: deleteArray };
+      console.log('Settings Dats: ' + settingData);
+      try {
+        const res = await fetch('http://sktest87.000webhostapp.com/deletesettings.php', {
+
+          method: 'post', // or 'PUT'
+          mode: 'cors',
+          cache: 'no-cache',
+          headers: {
+            'Content-Type': 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Type': 'multipart/form-data',
+            'Accept': 'application/json',
+            'Accept': 'application/x-www-form-urlencoded',
+            'Accept': 'multipart/form-data',
+            //'Access-Control-Allow-Origin': '*',
+            'User-Agent': 'ANYTHING_WILL_WORK_HERE'
+            //'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.62'
+          },
+          referrerPolicy: 'no-referrer',
+
+          body: JSON.stringify(settingData),
+
+        })
+
+        console.log('Settings Data: ' + settingData);
+        var posts = await res.text();
+        console.log('post Data: ' + posts);
+        if (posts != null) {
+          //document.getElementById('myModal').style.display = 'none'
+          //router.push(router.pathname.concat('?','code=',router.query.code,'&path=',router.query.path),router.asPath);
+          router.push({ pathname: router.pathname, query: { code: router.query.code, path: router.query.path } }, router.asPath);
+
+
+        }
 
 
 
-    } catch (error) {
-      console.log('ERROR: ' + error);
 
+
+      } catch (error) {
+        console.log('ERROR: ' + error);
+
+      }
     }
 
   }
+
+
 
 
   async function savesettings(e) {
@@ -266,7 +262,7 @@ export default function SubsettingsTemplate({ posts }) {
       console.log('Settings Data: ' + settingData);
       var posts = await res.text();
       console.log('post Data: ' + posts);
-      if (posts != null) {
+      if (posts.trim() == 'data added successfully') {
         document.getElementById('myModal').style.display = 'none'
         //router.push(router.pathname.concat('?','code=',router.query.code,'&path=',router.query.path),router.asPath);
         router.push({ pathname: router.pathname, query: { code: router.query.code, path: router.query.path } }, router.asPath);
@@ -292,25 +288,15 @@ export default function SubsettingsTemplate({ posts }) {
 
 
 }
-function clearcheckboxes(){
-
- // document.querySelectorAll('input[type=checkbox]').checked=false;
-
- var allCheckboxes= document.querySelectorAll('input[type=checkbox]');
-
- for(var i=0;i<allCheckboxes.length;i++){
-
-  allCheckboxes[i].checked=false;
- }
 
 
-}
+
 export async function getServerSideProps(params) {
 
   //var posts=[{"english_description":"IT"}];
   var posts = [];
   //router.push({ pathname: router.pathname, query: { code: router.query.code, path: router.query.path } }, router.asPath);
-  
+
   console.log('params: ' + params.query.code);
   //var FormData = require('form-data');
   //var formdata = new FormData();
@@ -375,7 +361,7 @@ export async function getServerSideProps(params) {
   }
 
   return {
-    props: { posts: await posts ,flag:'1'} // will be passed to the page component as props
+    props: { posts: await posts, flag: '1' } // will be passed to the page component as props
   }
 }
 //SubsettingsTemplate.GetLayout = SettingsLayout
