@@ -1,0 +1,39 @@
+
+.ShowSettings {
+
+    
+
+    height: 300px;
+    overflow-y: scroll;
+   
+   
+
+
+    
+
+
+}
+
+
+
+.ShowSettings thead th {
+
+    background: lightgray;
+    width: 16px;
+    position: sticky;
+    top: 0px;
+    padding-right: 4px;
+   
+
+
+}
+
+th{
+
+    width: 16px;
+    padding-left: 4px;
+}
+
+
+
+

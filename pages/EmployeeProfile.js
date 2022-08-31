@@ -1,16 +1,19 @@
-import MasterSettingsLayout from "../components/MasterSettingsLayout"
+import MasterSettingsLayout from "../layouts/MasterSettingsLayout"
 import React, { Component, createElement, useEffect,useState } from 'react';
 import { useRouter } from "next/router";
 import Image from 'next/image'
-import checkboxes from '../components/ShowDeleteOption';
 import addEmployeeImage from '../public/Images/download (1).jpg'
+import addEmployeeImage1 from '../public/Images/addemployee.png'
 import addallowanceImage from '../public/Images/addsettings3.png';
 import saveallowanceImage from '../public/Images/save.png';
 import deleteSettingsImage from '../public/Images/delete4.png';
 import selectAllcheckboxes from "../components/SelectAllCheckboxes";
-import ShowDeleteOption from "../components/ShowDeleteOption";
 import ClearSelectedCheckboxes from "../components/ClearSelectedCheckboxes";
-import UpdateFormFields from "../components/UpdateFormFields";
+import UpdateFormFields from "../components/EmployeeProfile/UpdateFormFields";
+import EnableOption from '../components/EnableOptions';
+import saveEmployeeImage from '../public/Images/save.png';
+
+
 
 
 
@@ -27,6 +30,7 @@ const [inputs, setInputs] = useState({});
        
        ClearSelectedCheckboxes('saveimage');
        ClearSelectedCheckboxes('deleteimage');
+       ClearSelectedCheckboxes('addtransactionimage');
        UpdateFormFields();
    
    
@@ -38,16 +42,18 @@ const [inputs, setInputs] = useState({});
 
     return (
 
-        <div >
+        <div className="employeeprofiletemplate">
 
 
-            <div className="actionbar" id="actionbar">
+            <div className="employeeprofileactionbar" id="actionbar">
 
 
 
-                <Image src={addEmployeeImage} width={50} height={50} onClick={openAddEmployeePage} />
+               <div className='img'><Image src={addEmployeeImage1}  onClick={openAddEmployeePage} /></div> 
+               
+                <div className='img'><Image id='addtransactionimage' objectfit='contain' src={addallowanceImage} onClick={addTransaction} /></div>
                 {/*<input id="myBtn" name="Image1" type="image" height="47" src="../components/Images/download (1).jpg" width="52" onClick={addEmployee} />*/}
-
+                 
 
             </div>
 
@@ -58,7 +64,7 @@ const [inputs, setInputs] = useState({});
 
                     <thead>
                         <tr>
-                            <th>< input id='headercheckbox' name='headercheckbox[]' type={'checkbox'} onClick={() => selectAllcheckboxes('headercheckbox','input[id="employeedatacheckbox"]')} ></input></th>
+                            <th>< input id='headercheckbox' name='headercheckbox[]' type={'checkbox'} onClick={() => selectAllcheckboxes('headercheckbox','input[id="employeedatacheckbox"]','addtransactionimage')} ></input></th>
                             <th>id</th>
                             <th>first Name</th>
                             <th>Last Name</th>
@@ -76,7 +82,7 @@ const [inputs, setInputs] = useState({});
 
                         {posts.map((post) => (
                             <tr>
-                                <td>< input id='employeedatacheckbox' name='datacheckbox[]' type={'checkbox'} ></input></td>
+                                <td>< input id='employeedatacheckbox' name='datacheckbox[]' type={'checkbox'} onClick={() => EnableOption('addtransactionimage','input[id="employeedatacheckbox"]')} ></input></td>
                                 <td>{post.ID}</td>
                                 <td>{post.First_Name} </td>
                                 <td>{post.Family_Name} </td>
@@ -234,7 +240,7 @@ const [inputs, setInputs] = useState({});
 
                                 {/*<!--Benefits-->*/}
 
-                                <div className='actionbar' >
+                                <div className='addrecordactionbar' >
 
                                     <div className='img'><Image id='addimage' objectfit='contain' src={addallowanceImage} onClick={addBenefit} /></div>
                                     <div className='img'><Image id='saveimage' className="showhide" objectfit='contain' src={saveallowanceImage} onClick={saveBenefit} /></div>
@@ -246,7 +252,7 @@ const [inputs, setInputs] = useState({});
 
                                         <thead>
                                             <tr>
-                                                <th>< input id='benefitheadercheckbox' name='headercheckbox[]' type={'checkbox'} onClick={() => selectAllcheckboxes('benefitheadercheckbox','input[id="benefitdatacheckbox"]')} ></input></th>
+                                                <th>< input id='benefitheadercheckbox' name='headercheckbox[]' type={'checkbox'} onClick={() => selectAllcheckboxes('benefitheadercheckbox','input[id="benefitdatacheckbox"]','deleteimage')} ></input></th>
                                                 
                                                 <th >Benefit Name</th>
                                                 <th >Benefit Date</th>
@@ -268,7 +274,11 @@ const [inputs, setInputs] = useState({});
 
 
                            {/*<input name="submit" type="image" value="submit" />*/}
+                           
+                            <div className='bottomactionbar'>
                             <div className='img'><input type="image" src='../../Images/save.png' ></input></div>
+                        {/* <div className='img' onClick={saveEmployee}><Image id='saveimage' objectfit='contain' src={saveEmployeeImage}/></div> */}   
+                            </div>
 
                         </form>
 
@@ -297,6 +307,13 @@ const [inputs, setInputs] = useState({});
 
 
     );
+
+
+    async function addTransaction(){
+
+
+
+    }
 
 
 
@@ -417,7 +434,7 @@ const [inputs, setInputs] = useState({});
             checkboxElement.setAttribute("type","checkbox");
             checkboxElement.setAttribute("name","delete[]");
             checkboxElement.setAttribute("id","benefitdatacheckbox");
-            checkboxElement.addEventListener('click',()=>ShowDeleteOption('deleteimage','input[id="benefitdatacheckbox"]'));
+            checkboxElement.addEventListener('click',()=>EnableOption('deleteimage','input[id="benefitdatacheckbox"]'));
             rows[i].cells[0].appendChild(checkboxElement);
             
         }
@@ -476,7 +493,11 @@ const [inputs, setInputs] = useState({});
         console.log('benefit1: '+  JSON.stringify(benefits))
 
         const employeedata = {
-            ID: e.target.EID.value,
+
+
+
+            
+            ID: e.target.EID.value, 
             Fname: e.target.Fname.value,
             Sname: e.target.Sname.value,
             Tname: e.target.Tname.value,
@@ -496,6 +517,32 @@ const [inputs, setInputs] = useState({});
             Email: e.target.Email.value,
             BasicSalary: e.target.BasicSalary.value,
             Benefits: benefits,
+
+
+          /* ID: document.getElementById("EID").value,
+            Fname: document.getElementById("Fname").value,
+            Sname: document.getElementById("Sname").value,
+            Tname: document.getElementById("Tname").value,
+            Famname: document.getElementById("Famname").value,
+            Nationality: document.getElementById("Nationality").value,
+            HomeCountry: document.getElementById("HomeCountry").value,
+            Religion: document.getElementById("Religion").value,
+            Gender: document.getElementById("Gender").value,
+            MaritalStatus: document.getElementById("MaritalStatus").value,
+            BirthdayDate: document.getElementById("BirthdayDate").value,
+            Mobile: document.getElementById("Mobile").value,
+            Location: document.getElementById("Location").value,
+            Function: document.getElementById("Function").value,
+            Section: document.getElementById("Section").value,
+            Position: document.getElementById("Position").value,
+            HiringDate: document.getElementById("HiringDate").value,
+            Email: document.getElementById("Email.value"),
+            BasicSalary: document.getElementById("BasicSalary").value,
+            Benefits: benefits,*/
+
+
+
+
 
         };
 
@@ -573,6 +620,8 @@ const [inputs, setInputs] = useState({});
 
 export async function getServerSideProps(params) {
 
+   
+
     //var posts=[{"english_description":"IT"}];
     var posts = [];
     //router.push({ pathname: router.pathname, query: { code: router.query.code, path: router.query.path } }, router.asPath);
@@ -597,7 +646,7 @@ export async function getServerSideProps(params) {
                 'Accept': 'multipart/form-data',
                 'Access-Control-Allow-Origin': '*',
                 'User-Agent': 'ANYTHING_WILL_WORK_HERE'
-                //'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.62'
+              
             },
             referrerPolicy: 'no-referrer',
 
@@ -611,14 +660,7 @@ export async function getServerSideProps(params) {
 
         })
 
-        // console.log('res: ' + res);
-        //const headers = await res.headers;
-        //const status = await res.status;
-        //const type = await res.type;
-        //console.log('headers: ' + headers);
-        //console.log('status: ' + status);
-        //console.log('type: ' + type);
-        //console.log('fetch: ' + res);
+ 
         var res1 = res[0];
         //posts= await res.text();
         // posts= await posts.length;

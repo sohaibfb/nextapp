@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import Link from 'next/link'
-import Layout from '../../components/Layout';
-import MasterSettingsLayout from '../../components/MasterSettingsLayout';
+
+import MasterSettingsLayout from '../../layouts/MasterSettingsLayout';
 
 
 

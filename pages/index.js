@@ -5,8 +5,7 @@ import styles from '../styles/Home.module.css'
 import './Settings/AdminSettings';
 import './temp/MasterSettings';
 import Link from 'next/link'
-import HeaderPage from '../components/HeaderPage';
-import Layout from '../components/Layout';
+
 
 
 

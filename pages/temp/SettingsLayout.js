@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from "next/router";
-import MasterSettingsLayout from '../../components/MasterSettingsLayout';
+import MasterSettingsLayout from '../../layouts/MasterSettingsLayout';
 
 
 

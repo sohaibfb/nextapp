@@ -1,6 +1,6 @@
 //this function will select all  checkboxes once header checkbox has been selected.
-import ShowDeleteOption from "./ShowDeleteOption";
-export default function selectAllcheckboxes(id,checkboxid) {
+import EnableOption from "./EnableOptions";
+export default function selectAllcheckboxes(id,checkboxid,enableid) {
 
     //if(id=='benefitheadercheckbox'){
         
@@ -18,7 +18,7 @@ export default function selectAllcheckboxes(id,checkboxid) {
 
             allCheckboxes[i].checked = true;
         }
-        ShowDeleteOption('deleteimage','input[id="benefitdatacheckbox"]');
+       
 
 
     }
@@ -29,10 +29,12 @@ export default function selectAllcheckboxes(id,checkboxid) {
 
             allCheckboxes[i].checked = false;
         }
-        ShowDeleteOption('deleteimage','input[id="benefitdatacheckbox"]');
+        EnableOption('deleteimage','input[id="benefitdatacheckbox"]');
 
 
     }
+
+    EnableOption(enableid,checkboxid);
 
 
      }

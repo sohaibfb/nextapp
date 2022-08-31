@@ -1,5 +1,8 @@
+import DisableImage from "./Disableimage";
+import EnableImage from "./EnableImage";
+
 //this function will show the delete option once one or more checkboxes has been selected.
-export default function ShowDeleteOption(id,checkboxid) {
+export default function EnableOption(id,checkboxid) {
     var allCheckboxes = document.querySelectorAll(checkboxid);
     var checkboxflag = false;
 
@@ -14,14 +17,14 @@ export default function ShowDeleteOption(id,checkboxid) {
 
     if (checkboxflag == false) {
 
-      document.getElementById(id).style.opacity="0.2";
-      document.getElementById(id).style.cursor = "auto";
+      //document.getElementById(id).style.opacity="0.2";
+     // document.getElementById(id).style.cursor = "auto";
+     DisableImage(id);
 
     }
 
     else {
-      document.getElementById(id).style.opacity ="1";
-      document.getElementById(id).style.cursor = "pointer";
+      EnableImage(id);
    
     }
 
