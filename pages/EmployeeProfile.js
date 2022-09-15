@@ -85,12 +85,12 @@ const [inputs, setInputs] = useState({});
                         {posts.map((post,index) => (
                             <tr>
                                 <td>< input id='employeedatacheckbox' name='datacheckbox[]' type={'checkbox'} onClick={() => EnableOption('addtransactionimage','input[id="employeedatacheckbox"]')} ></input></td>
-                                <td>{post.ID}</td>
-                                <td>{post.First_Name} </td>
-                                <td>{post.Family_Name} </td>
-                                <td>{post.Hiring_Date} </td>
-                                <td>{post.Nationality} </td>
-                                <td>{post.Start_Salary} </td>
+                                <td key={post.id}>{post.ID}</td>
+                                <td key={post.id}>{post.First_Name} </td>
+                                <td key={post.id}>{post.Family_Name} </td>
+                                <td key={post.id}>{post.Hiring_Date} </td>
+                                <td key={post.id}>{post.Nationality} </td>
+                                <td key={post.id}>{post.Start_Salary} </td>
 
 
 
