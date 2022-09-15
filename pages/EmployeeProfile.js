@@ -333,7 +333,7 @@ const [inputs, setInputs] = useState({});
         const settingData = { code: 1 };
 
         try {
-            const res = await fetch('http://sktest87.000webhostapp.com/loademployeeprofilesettings.php', {
+            const res = await fetch('https://sktest87.000webhostapp.com/loademployeeprofilesettings.php', {
 
                 method: 'post', // or 'PUT'
                 mode: 'cors',
@@ -551,7 +551,7 @@ const [inputs, setInputs] = useState({});
         // const settingData = { code: router.query.code, Ename: e.target.Ename.value, Aname: e.target.Aname.value };
         console.log('employeedata: ' + JSON.stringify(employeedata));
         try {
-            const res = await fetch('http://sktest87.000webhostapp.com/addemployee.php', {
+            const res = await fetch('https://sktest87.000webhostapp.com/addemployee.php', {
 
                 method: 'post', // or 'PUT'
                 mode: 'cors',
@@ -635,7 +635,7 @@ export async function getServerSideProps(params) {
     //console.log('formdata : ' + formdata);
     const data1 = { code: 1 };
     try {
-        const res = await fetch('http://sktest87.000webhostapp.com/loademployeedata.php', {
+        const res = await fetch('https://sktest87.000webhostapp.com/loademployeedata.php', {
             method: 'post', // or 'PUT'
             mode: 'cors',
             cache: 'no-cache',

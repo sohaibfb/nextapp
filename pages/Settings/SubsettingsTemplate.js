@@ -249,7 +249,7 @@ export default function SubsettingsTemplate({ posts }) {
     console.log('Settings Dats: ' + settingData);
     try {
 
-      const res = await FetchData('http://sktest87.000webhostapp.com/addsettings.php', 'post', settingData);
+      const res = await FetchData('https://sktest87.000webhostapp.com/addsettings.php', 'post', settingData);
 
       var posts = await res.text();
 
@@ -287,7 +287,7 @@ export async function getServerSideProps(params) {
   const data1 = { code: params.query.code };
   try {
 
-    const res = await FetchData('http://sktest87.000webhostapp.com/loadsettings.php', 'post', data1);
+    const res = await FetchData('https://sktest87.000webhostapp.com/loadsettings.php', 'post', data1);
 
 
     var res1 = res[0];

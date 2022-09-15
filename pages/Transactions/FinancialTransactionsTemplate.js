@@ -240,8 +240,8 @@ export default function FinancialTransactionsTemplate({ posts }) {
 
       try {
 
-        const ressult1 = await FetchData('http://sktest87.000webhostapp.com/loademployeesearch.php', 'post', searchEmployee);
-        const result2  = await FetchData('http://sktest87.000webhostapp.com/loademployeesearch.php', 'post', searchEmployee);
+        const ressult1 = await FetchData('https://sktest87.000webhostapp.com/loademployeesearch.php', 'post', searchEmployee);
+        const result2  = await FetchData('https://sktest87.000webhostapp.com/loademployeesearch.php', 'post', searchEmployee);
         var posts = await ressult1.json();
         // var data1=await JSON.parse(posts);
 
@@ -329,7 +329,7 @@ export default function FinancialTransactionsTemplate({ posts }) {
     const transDetails = { code: code };
 
     try {
-      const res = await FetchData('http://sktest87.000webhostapp.com/loadsettings.php', 'post', transDetails)
+      const res = await FetchData('https://sktest87.000webhostapp.com/loadsettings.php', 'post', transDetails)
 
 
 
@@ -388,7 +388,7 @@ export default function FinancialTransactionsTemplate({ posts }) {
       const transDetails = { code: router.query.code, deletesettingsarray: deleteArray };
       console.log('Settings Dats: ' + settingData);
       try {
-        const res = await FetchData('http://sktest87.000webhostapp.com/deletesettings.php', 'post', transDetails);
+        const res = await FetchData('https://sktest87.000webhostapp.com/deletesettings.php', 'post', transDetails);
 
 
         console.log('Settings Data: ' + settingData);
@@ -433,7 +433,7 @@ export default function FinancialTransactionsTemplate({ posts }) {
 
  
     try {
-      const res = await FetchData('http://sktest87.000webhostapp.com/savetransaction.php', 'post', transDetails);
+      const res = await FetchData('https://sktest87.000webhostapp.com/savetransaction.php', 'post', transDetails);
 
 
   
@@ -482,7 +482,7 @@ export async function getServerSideProps(params) {
   //console.log('formdata : ' + formdata);
   const data1 = { code: params.query.code };
   try {
-    const res = await FetchData('http://sktest87.000webhostapp.com/loadsettings.php', 'post', data1);
+    const res = await FetchData('https://sktest87.000webhostapp.com/loadsettings.php', 'post', data1);
 
 
     var res1 = res[0];
