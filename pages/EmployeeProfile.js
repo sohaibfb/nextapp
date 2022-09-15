@@ -12,7 +12,7 @@ import ClearSelectedCheckboxes from "../components/ClearSelectedCheckboxes";
 import UpdateFormFields from "../components/EmployeeProfile/UpdateFormFields";
 import EnableOption from '../components/EnableOptions';
 import saveEmployeeImage from '../public/Images/save.png';
-import DisableImage from "../components/Disableimage";
+import DisableImage from "../components/DisableImg";
 import EnableImage from "../components/EnableImage";
 
 
@@ -30,7 +30,7 @@ const [inputs, setInputs] = useState({});
     useEffect(() => {
        
        DisableImage('savebenefitimage');
-       DisableImage('deletebenefitimage')
+       DisableImage('deletebenefitimage');
        ClearSelectedCheckboxes('input[type=checkbox]:checked');
        UpdateFormFields();
       

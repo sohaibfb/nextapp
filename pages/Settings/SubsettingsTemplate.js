@@ -15,7 +15,7 @@ import ClearSelectedCheckboxes from '../../components/ClearSelectedCheckboxes';
 import saveSettingsImage from '../../public/Images/save.png';
 import EnableOption from '../../components/EnableOptions';
 import FetchData from '../../components/FetchData';
-import DisableImage from '../../components/Disableimage';
+import DisableImage from '../../components/DisableImg';
 
 
 

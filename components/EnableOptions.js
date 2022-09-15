@@ -1,4 +1,4 @@
-import DisableImage from "./Disableimage";
+import DisableImage from "./DisableImg";
 import EnableImage from "./EnableImage";
 
 //this function will show the delete option once one or more checkboxes has been selected.

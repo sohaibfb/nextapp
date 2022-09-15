@@ -19,7 +19,7 @@ import OtherIncomeTransactionTemplate from './OtherIncomeTransactionTemplate';
 import OtherDeductionsTransactionTemplate from './OtherDeductionsTransactionTemplate';
 import NonpayrolTransactionTemplate from './NonpayrolTransactionTemplate';
 import OvertimeTransactionTemplate from './OvertimeTransactionTemplate';
-import DisableImage from '../../components/Disableimage';
+import DisableImage from '../../components/DisableImg';
 
 
 
