@@ -13,7 +13,7 @@ export default function OvertimeTransactionTemplate() {
 
                     {/*<!--Transaction Type-->*/}
 
-                    <label htmlfor="TransType"><span>Transaction Type:</span><select id="TransType" title='userdefined' name="TransType"  ></select></label>
+                    <label htmlFor="TransType"><span>Transaction Type:</span><select id="TransType" title='userdefined' name="TransType"  ></select></label>
 
                     {/*<!--Transaction Date-->*/}
                     <label htmlFor="TransDate"><span>Transaction Date:<span className="required">*</span></span><input id="TransDate" name="TransDate" type="date" autoFocus /></label>

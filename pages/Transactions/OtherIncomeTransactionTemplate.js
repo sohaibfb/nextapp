@@ -14,7 +14,7 @@ export default function OtherIncomeTransactionTemplate() {
 
                     {/*<!--Transaction Type-->*/}
 
-                    <label htmlfor="TransType"><span>Other Income Type:</span><select id="TransType" title='userdefined' name="TransType"  ></select></label>
+                    <label htmlFor="TransType"><span>Other Income Type:</span><select id="TransType" title='userdefined' name="TransType"  ></select></label>
 
                     {/*<!--Transaction Date-->*/}
                     <label htmlFor="TransDate"><span>Other Income Date:<span className="required">*</span></span><input id="TransDate" name="TransDate" type="date" autoFocus /></label>

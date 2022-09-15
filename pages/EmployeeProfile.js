@@ -128,30 +128,30 @@ const [inputs, setInputs] = useState({});
 
 
                                 {/*<!--ID-->*/}
-                                <label for=""><span>ID:<span className="required">*</span></span><input id="EID" name="EID" title='userdefined' type="text" value={inputs.EID || ""} onChange={handleChange} onBlur={handleFocusOut} required /></label>
+                                <label htmlFor=""><span>ID:<span className="required">*</span></span><input id="EID" name="EID" title='userdefined' type="text" value={inputs.EID || ""} onChange={handleChange} onBlur={handleFocusOut} required /></label>
 
                                 {/*<!--Name-->*/}
-                                <label for=""><span>Name :<span className="required">*</span></span><input id='Fname' name="FirstName" title='userdefined' type="text"
+                                <label htmlFor=""><span>Name :<span className="required">*</span></span><input id='Fname' name="FirstName" title='userdefined' type="text"
                                     placeholder="First Name" value={inputs.FirstName} onChange={handleChange} onBlur={handleFocusOut} required/>
                                     <input id='Sname' name="Sname" title='userdefined' type="text" placeholder="Second Name" value={inputs.Sname} onChange={handleChange} onBlur={handleFocusOut} required />
                                     <input id='Tname' name="Tname" title='userdefined' type="text" placeholder="Third Name"  value={inputs.Tname} onChange={handleChange} onBlur={handleFocusOut} required />
                                     <input id='Famname' name="Famname" title='userdefined' type="text" placeholder="Family Name" value={inputs.Famname} onChange={handleChange} onBlur={handleFocusOut} required /></label>
 
                                 {/*<!--nationality-->*/}
-                                <label for=""><span>Nationality :</span><select  id="1"  name="Nationality" title='userdefined' value={inputs.Nationality}  onChange={handleChange} onBlur={handleFocusOut} required  >
+                                <label htmlFor=""><span>Nationality :</span><select  id="1"  name="Nationality" title='userdefined' value={inputs.Nationality}  onChange={handleChange} onBlur={handleFocusOut} required  >
 
 
                                 </select></label>
 
 
                                 {/*<!--Home Country-->*/}
-                                <label for=""><span>Home Country:</span><select id="3" title='userdefined' name="HomeCountry" onChange={handleChange} onBlur={handleFocusOut}  >
+                                <label htmlFor=""><span>Home Country:</span><select id="3" title='userdefined' name="HomeCountry" onChange={handleChange} onBlur={handleFocusOut}  >
 
 
                                 </select></label>
 
                                 {/*<!--Gender-->*/}
-                                <label for=""><span>Gender :</span><select id="Gender" title='userdefined' name="Gender" onChange={handleChange} onBlur={handleFocusOut} required >
+                                <label htmlFor=""><span>Gender :</span><select id="Gender" title='userdefined' name="Gender" onChange={handleChange} onBlur={handleFocusOut} required >
                                     <option title='userdefined' value='' selected>Choose</option>
                                     <option value="1">male</option>
                                     <option value="2">Female</option>
@@ -163,12 +163,12 @@ const [inputs, setInputs] = useState({});
 
 
                                 {/*<!--Religin-->*/}
-                                <label for=""><span>Religion :</span><select id="2" title="userdefined" name="Religion" onChange={handleChange} onBlur={handleFocusOut} >
+                                <label htmlFor=""><span>Religion :</span><select id="2" title="userdefined" name="Religion" onChange={handleChange} onBlur={handleFocusOut} >
 
                                 </select></label>
 
                                 {/*<!--Marital Status-->*/}
-                                <label for=""><span>Marital Status :</span><select id="MaritalStatus" title='userdefined'  name="MaritalStatus" onChange={handleChange} onBlur={handleFocusOut} required >
+                                <label htmlFor=""><span>Marital Status :</span><select id="MaritalStatus" title='userdefined'  name="MaritalStatus" onChange={handleChange} onBlur={handleFocusOut} required >
                                 <option title='userdefined' value='' selected>Choose</option>
                                     <option value="1">Single</option>
                                     <option value="2">Married</option>
@@ -177,11 +177,11 @@ const [inputs, setInputs] = useState({});
 
 
                                 {/*<!--birthday Date-->*/}
-                                <label for=""><span>Birth Date:<span className="required">*</span></span><input title='userdefined' id="BirthdayDate" name="BirthdayDate"
+                                <label htmlFor=""><span>Birth Date:<span className="required">*</span></span><input title='userdefined' id="BirthdayDate" name="BirthdayDate"
                                     type="date" value={inputs.BirthdayDate} onChange={handleChange} onBlur={handleFocusOut} required  /></label>
 
                                 {/*<!--Mobile-->*/}
-                                <label for=""><span>Mobile:<span className="required">*</span></span><input id="Mobile" title='userdefined' name="Mobile" type="tel"
+                                <label htmlFor=""><span>Mobile:<span className="required">*</span></span><input id="Mobile" title='userdefined' name="Mobile" type="tel"
                                     placeholder="Mobile" value={inputs.Mobile} onChange={handleChange} onBlur={handleFocusOut}   /></label>
                             </fieldset>
 
@@ -193,15 +193,15 @@ const [inputs, setInputs] = useState({});
                                 <legend>Employement Information</legend>
 
                                 {/*<!--Location-->*/}
-                                <label for=""><span>Location<span className="required">*</span></span><select id="7" title="userdefined" name="Location"  onBlur={handleFocusOut}   required >
+                                <label htmlFor=""><span>Location<span className="required">*</span></span><select id="7" title="userdefined" name="Location"  onBlur={handleFocusOut}   required >
                                 </select></label>
 
                                 {/*<!--Department-->*/}
-                                <label for=""><span>Department<span className="required">*</span></span><select id='5' title="userdefined" name="Function"  onBlur={handleFocusOut}   required >
+                                <label htmlFor=""><span>Department<span className="required">*</span></span><select id='5' title="userdefined" name="Function"  onBlur={handleFocusOut}   required >
                                 </select></label>
 
                                 {/*<!--Section-->*/}
-                                <label for=""><span>Section:</span><select id='6' title="userdefined" name="Section" onBlur={handleFocusOut}    required>
+                                <label htmlFor=""><span>Section:</span><select id='6' title="userdefined" name="Section" onBlur={handleFocusOut}    required>
 
 
                                 </select></label>
@@ -209,19 +209,19 @@ const [inputs, setInputs] = useState({});
 
 
                                 {/*<!--Position-->*/}
-                                <label for=""><span>Position</span><select id="4" title="userdefined" name="Position" onBlur={handleFocusOut}   required >
+                                <label htmlFor=""><span>Position</span><select id="4" title="userdefined" name="Position" onBlur={handleFocusOut}   required >
 
                                 </select></label>
 
 
 
                                 {/*<!--hiring Date-->*/}
-                                <label for=""><span>Hiring Date<span className="required">*</span></span><input id="HiringDate" title="userdefined" name="HiringDate"
+                                <label htmlFor=""><span>Hiring Date<span className="required">*</span></span><input id="HiringDate" title="userdefined" name="HiringDate"
                                     type="date" value={inputs.HiringDate} onChange={handleChange} onBlur={handleFocusOut}   required  /></label>
 
 
                                 {/*<!--Email-->*/}
-                                <label for=""><span>Email<span className="required">*</span></span><input id="Email" title="userdefined" name="Email" type="email" value={inputs.Email} onChange={handleChange} onBlur={handleFocusOut}    required /></label>
+                                <label htmlFor=""><span>Email<span className="required">*</span></span><input id="Email" title="userdefined" name="Email" type="email" value={inputs.Email} onChange={handleChange} onBlur={handleFocusOut}    required /></label>
 
 
 
@@ -237,7 +237,7 @@ const [inputs, setInputs] = useState({});
                                 <legend>Financial Information</legend>
 
                                 {/*<!--Basic Salary-->*/}
-                                <label for=""><span>basic Salary<span className="required">*</span></span><input id="BasicSalary" title="userdefined" name="BasicSalary"
+                                <label htmlFor=""><span>basic Salary<span className="required">*</span></span><input id="BasicSalary" title="userdefined" name="BasicSalary"
                                     type="number" value={inputs.BasicSalary} onChange={handleChange} onBlur={handleFocusOut}  required /></label> <br></br>
 
                                 {/*<!--Benefits-->*/}

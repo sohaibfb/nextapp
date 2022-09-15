@@ -11,7 +11,7 @@ export default function OtherDeductionsTransactionTemplate() {
 
                     {/*<!--Transaction Type-->*/}
 
-                    <label htmlfor="TransType"><span>Trans Type:</span><select id="TransType" title='userdefined' name="TransType"  ></select></label>
+                    <label htmlFor="TransType"><span>Trans Type:</span><select id="TransType" title='userdefined' name="TransType"  ></select></label>
 
                     {/*<!--Transaction Date-->*/}
                     <label htmlFor="TransDate"><span>Transaction Date:<span className="required">*</span></span><input id="TransDate" name="TransDate" type="date" autoFocus /></label>

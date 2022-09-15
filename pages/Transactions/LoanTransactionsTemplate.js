@@ -14,7 +14,7 @@ export default function LoanTransactionTemplate() {
 
                     {/*<!--Transaction Type-->*/}
 
-                    <label htmlfor="TransType"><span>Loan Type:</span><select id="TransType" title='userdefined' name="TransType"  ></select></label>
+                    <label htmlFor="TransType"><span>Loan Type:</span><select id="TransType" title='userdefined' name="TransType"  ></select></label>
 
                     {/*<!--Transaction Date-->*/}
                     <label htmlFor="TransDate"><span>Loan Date:<span className="required">*</span></span><input id="TransDate" name="TransDate" type="date" autoFocus /></label>

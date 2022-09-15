@@ -170,7 +170,7 @@ export default function FinancialTransactionsTemplate({ posts }) {
       </div>
       <input name="scode" id="scode" type="hidden" value={router.query.code} />
 
-      <div class="ShowTransaction">
+      <div className="ShowTransaction">
         <table id="settings">
 
 
