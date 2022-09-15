@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import Head from 'next/head'
-import SettingsTemplate from '../pages/temp/SettingsTemplate';
-SettingsTemplate
+
 export default function HeaderPage({ children }) {
 
 
