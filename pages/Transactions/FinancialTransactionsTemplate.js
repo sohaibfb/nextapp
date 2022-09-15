@@ -39,9 +39,8 @@ export default function FinancialTransactionsTemplate({ posts }) {
 
 
   useEffect(() => {
-    // clearcheckboxes();
-    //DisableImage('addtransactionimage');
-    ClearSelectedCheckboxes('deletetransactionimage');
+    DisableImage('deletetransactionimage');
+    ClearSelectedCheckboxes('input[type=checkbox]:checked');
     updateLinksColor(mainpath, menulinkspath, defaultpath);
 
 
@@ -190,7 +189,7 @@ export default function FinancialTransactionsTemplate({ posts }) {
           <tbody>
             {posts.map((post) => (
               <tr>
-                <td>< input id='delete' name='delete[]' type={'checkbox'} onClick={() => ShowDeleteOption('showhide', 'input[id="delete"]')} value={post.code}></input></td>
+                <td>< input id='delete' name='delete[]' type={'checkbox'} onClick={() => ShowDeleteOption('deletetransactionimage', 'input[id="delete"]')} value={post.code}></input></td>
                 <td>{post.code} </td>
 
 
@@ -222,14 +221,14 @@ export default function FinancialTransactionsTemplate({ posts }) {
 
 
 
-    console.log('Employee Name ' + document.getElementById('showEmployeeId').value);
+  
 
 
     const searchEmployee = { code: router.query.code, name: document.getElementById('showEmployeeId').value };
     const searchTable = document.getElementById('ShowSearchEmployee');
     if (document.getElementById('showEmployeeId').value === "") {
 
-       console.log('name removed1');
+    
       searchTable.style.visibility = 'hidden'
       DisableImage( 'addtransactionimage');
       document.getElementById('showEmployeeName').innerHTML=' ';
@@ -241,8 +240,9 @@ export default function FinancialTransactionsTemplate({ posts }) {
 
       try {
 
-        const res = await FetchData('http://sktest87.000webhostapp.com/loademployeesearch.php', 'post', searchEmployee);
-        var posts = await res.json();
+        const ressult1 = await FetchData('http://sktest87.000webhostapp.com/loademployeesearch.php', 'post', searchEmployee);
+        const result2  = await FetchData('http://sktest87.000webhostapp.com/loademployeesearch.php', 'post', searchEmployee);
+        var posts = await ressult1.json();
         // var data1=await JSON.parse(posts);
 
 

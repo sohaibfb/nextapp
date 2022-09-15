@@ -12,6 +12,8 @@ import ClearSelectedCheckboxes from "../components/ClearSelectedCheckboxes";
 import UpdateFormFields from "../components/EmployeeProfile/UpdateFormFields";
 import EnableOption from '../components/EnableOptions';
 import saveEmployeeImage from '../public/Images/save.png';
+import DisableImage from "../components/Disableimage";
+import EnableImage from "../components/EnableImage";
 
 
 
@@ -27,15 +29,15 @@ const [inputs, setInputs] = useState({});
 
     useEffect(() => {
        
-       
-       ClearSelectedCheckboxes('saveimage');
-       ClearSelectedCheckboxes('deleteimage');
-       ClearSelectedCheckboxes('addtransactionimage');
+       DisableImage('savebenefitimage');
+       DisableImage('deletebenefitimage')
+       ClearSelectedCheckboxes('input[type=checkbox]:checked');
        UpdateFormFields();
+      
    
    
    
-     })
+     },[inputs])
 
     
 
@@ -49,7 +51,7 @@ const [inputs, setInputs] = useState({});
 
 
 
-               <div className='img'><Image src={addEmployeeImage1}  onClick={openAddEmployeePage} /></div> 
+               <div className='img'><Image  id='addemployeeimage' src={addEmployeeImage1}  onClick={openAddEmployeePage} /></div> 
                
                 <div className='img'><Image id='addtransactionimage' objectfit='contain' src={addallowanceImage} onClick={addTransaction} /></div>
                 {/*<input id="myBtn" name="Image1" type="image" height="47" src="../components/Images/download (1).jpg" width="52" onClick={addEmployee} />*/}
@@ -126,30 +128,30 @@ const [inputs, setInputs] = useState({});
 
 
                                 {/*<!--ID-->*/}
-                                <label for=""><span>ID:<span className="required">*</span></span><input id="EID" name="EID" title='userdefined' type="text" value={inputs.EID} onChange={handleChange} onBlur={()=> handleFocusOut('EID')} required /></label>
+                                <label for=""><span>ID:<span className="required">*</span></span><input id="EID" name="EID" title='userdefined' type="text" value={inputs.EID || ""} onChange={handleChange} onBlur={handleFocusOut} required /></label>
 
                                 {/*<!--Name-->*/}
                                 <label for=""><span>Name :<span className="required">*</span></span><input id='Fname' name="FirstName" title='userdefined' type="text"
-                                    placeholder="First Name" value={inputs.FirstName} onChange={handleChange} onBlur={()=> handleFocusOut('Fname')} required/>
-                                    <input id='Sname' name="Sname" title='userdefined' type="text" placeholder="Second Name" value={inputs.Sname} onChange={handleChange} onBlur={()=> handleFocusOut('Sname')} required />
-                                    <input id='Tname' name="Tname" title='userdefined' type="text" placeholder="Third Name"  value={inputs.Tname} onChange={handleChange} onBlur={()=> handleFocusOut('Tname')} required />
-                                    <input id='Famname' name="Famname" title='userdefined' type="text" placeholder="Family Name" value={inputs.Famname} onChange={handleChange} onBlur={()=> handleFocusOut('Famname')} required /></label>
+                                    placeholder="First Name" value={inputs.FirstName} onChange={handleChange} onBlur={handleFocusOut} required/>
+                                    <input id='Sname' name="Sname" title='userdefined' type="text" placeholder="Second Name" value={inputs.Sname} onChange={handleChange} onBlur={handleFocusOut} required />
+                                    <input id='Tname' name="Tname" title='userdefined' type="text" placeholder="Third Name"  value={inputs.Tname} onChange={handleChange} onBlur={handleFocusOut} required />
+                                    <input id='Famname' name="Famname" title='userdefined' type="text" placeholder="Family Name" value={inputs.Famname} onChange={handleChange} onBlur={handleFocusOut} required /></label>
 
                                 {/*<!--nationality-->*/}
-                                <label for=""><span>Nationality :</span><select  id="1"  name="Nationality" title='userdefined' value={inputs.Nationality}  onChange={handleChange} onBlur={()=> handleFocusOut('1')} required  >
+                                <label for=""><span>Nationality :</span><select  id="1"  name="Nationality" title='userdefined' value={inputs.Nationality}  onChange={handleChange} onBlur={handleFocusOut} required  >
 
 
                                 </select></label>
 
 
                                 {/*<!--Home Country-->*/}
-                                <label for=""><span>Home Country:</span><select id="3" title='userdefined' name="HomeCountry" onChange={handleChange} onBlur={()=> handleFocusOut('3')}  >
+                                <label for=""><span>Home Country:</span><select id="3" title='userdefined' name="HomeCountry" onChange={handleChange} onBlur={handleFocusOut}  >
 
 
                                 </select></label>
 
                                 {/*<!--Gender-->*/}
-                                <label for=""><span>Gender :</span><select id="Gender" title='userdefined' name="Gender" onChange={handleChange} onBlur={()=> handleFocusOut('Gender')} required >
+                                <label for=""><span>Gender :</span><select id="Gender" title='userdefined' name="Gender" onChange={handleChange} onBlur={handleFocusOut} required >
                                     <option title='userdefined' value='' selected>Choose</option>
                                     <option value="1">male</option>
                                     <option value="2">Female</option>
@@ -161,12 +163,12 @@ const [inputs, setInputs] = useState({});
 
 
                                 {/*<!--Religin-->*/}
-                                <label for=""><span>Religion :</span><select id="2" title="userdefined" name="Religion" onChange={handleChange} onBlur={()=> handleFocusOut('2')} >
+                                <label for=""><span>Religion :</span><select id="2" title="userdefined" name="Religion" onChange={handleChange} onBlur={handleFocusOut} >
 
                                 </select></label>
 
                                 {/*<!--Marital Status-->*/}
-                                <label for=""><span>Marital Status :</span><select id="MaritalStatus" title='userdefined'  name="MaritalStatus" onChange={handleChange} onBlur={()=> handleFocusOut('MaritalStatus')} required >
+                                <label for=""><span>Marital Status :</span><select id="MaritalStatus" title='userdefined'  name="MaritalStatus" onChange={handleChange} onBlur={handleFocusOut} required >
                                 <option title='userdefined' value='' selected>Choose</option>
                                     <option value="1">Single</option>
                                     <option value="2">Married</option>
@@ -176,11 +178,11 @@ const [inputs, setInputs] = useState({});
 
                                 {/*<!--birthday Date-->*/}
                                 <label for=""><span>Birth Date:<span className="required">*</span></span><input title='userdefined' id="BirthdayDate" name="BirthdayDate"
-                                    type="date" value={inputs.BirthdayDate} onChange={handleChange} onBlur={()=> handleFocusOut('BirthdayDate')} required  /></label>
+                                    type="date" value={inputs.BirthdayDate} onChange={handleChange} onBlur={handleFocusOut} required  /></label>
 
                                 {/*<!--Mobile-->*/}
                                 <label for=""><span>Mobile:<span className="required">*</span></span><input id="Mobile" title='userdefined' name="Mobile" type="tel"
-                                    placeholder="Mobile" value={inputs.Mobile} onChange={handleChange} onBlur={()=> handleFocusOut('Mobile')}   /></label>
+                                    placeholder="Mobile" value={inputs.Mobile} onChange={handleChange} onBlur={handleFocusOut}   /></label>
                             </fieldset>
 
 
@@ -191,15 +193,15 @@ const [inputs, setInputs] = useState({});
                                 <legend>Employement Information</legend>
 
                                 {/*<!--Location-->*/}
-                                <label for=""><span>Location<span className="required">*</span></span><select id="7" title="userdefined" name="Location"  onBlur={()=> handleFocusOut('7')}   required >
+                                <label for=""><span>Location<span className="required">*</span></span><select id="7" title="userdefined" name="Location"  onBlur={handleFocusOut}   required >
                                 </select></label>
 
                                 {/*<!--Department-->*/}
-                                <label for=""><span>Department<span className="required">*</span></span><select id='5' title="userdefined" name="Function"  onBlur={()=> handleFocusOut('5')}   required >
+                                <label for=""><span>Department<span className="required">*</span></span><select id='5' title="userdefined" name="Function"  onBlur={handleFocusOut}   required >
                                 </select></label>
 
                                 {/*<!--Section-->*/}
-                                <label for=""><span>Section:</span><select id='6' title="userdefined" name="Section" onBlur={()=> handleFocusOut('6')}    required>
+                                <label for=""><span>Section:</span><select id='6' title="userdefined" name="Section" onBlur={handleFocusOut}    required>
 
 
                                 </select></label>
@@ -207,7 +209,7 @@ const [inputs, setInputs] = useState({});
 
 
                                 {/*<!--Position-->*/}
-                                <label for=""><span>Position</span><select id="4" title="userdefined" name="Position" onBlur={()=> handleFocusOut('4')}   required >
+                                <label for=""><span>Position</span><select id="4" title="userdefined" name="Position" onBlur={handleFocusOut}   required >
 
                                 </select></label>
 
@@ -215,11 +217,11 @@ const [inputs, setInputs] = useState({});
 
                                 {/*<!--hiring Date-->*/}
                                 <label for=""><span>Hiring Date<span className="required">*</span></span><input id="HiringDate" title="userdefined" name="HiringDate"
-                                    type="date" value={inputs.HiringDate} onChange={handleChange} onBlur={()=> handleFocusOut('HiringDate')}   required  /></label>
+                                    type="date" value={inputs.HiringDate} onChange={handleChange} onBlur={handleFocusOut}   required  /></label>
 
 
                                 {/*<!--Email-->*/}
-                                <label for=""><span>Email<span className="required">*</span></span><input id="Email" title="userdefined" name="Email" type="email" value={inputs.Email} onChange={handleChange} onBlur={()=> handleFocusOut('Email')}    required /></label>
+                                <label for=""><span>Email<span className="required">*</span></span><input id="Email" title="userdefined" name="Email" type="email" value={inputs.Email} onChange={handleChange} onBlur={handleFocusOut}    required /></label>
 
 
 
@@ -236,15 +238,15 @@ const [inputs, setInputs] = useState({});
 
                                 {/*<!--Basic Salary-->*/}
                                 <label for=""><span>basic Salary<span className="required">*</span></span><input id="BasicSalary" title="userdefined" name="BasicSalary"
-                                    type="number" value={inputs.BasicSalary} onChange={handleChange} onBlur={()=> handleFocusOut('BasicSalary')}  required /></label> <br></br>
+                                    type="number" value={inputs.BasicSalary} onChange={handleChange} onBlur={handleFocusOut}  required /></label> <br></br>
 
                                 {/*<!--Benefits-->*/}
 
                                 <div className='addrecordactionbar' >
 
-                                    <div className='img'><Image id='addimage' objectfit='contain' src={addallowanceImage} onClick={addBenefit} /></div>
-                                    <div className='img'><Image id='saveimage' className="showhide" objectfit='contain' src={saveallowanceImage} onClick={saveBenefit} /></div>
-                                    <div className='img'><Image id='deleteimage' className='showhide' objectfit='contain' src={deleteSettingsImage} /></div>
+                                    <div className='img'><Image id='addbenefitimage' objectfit='contain' src={addallowanceImage} onClick={addBenefit} /></div>
+                                    <div className='img'><Image id='savebenefitimage' className="showhide" objectfit='contain' src={saveallowanceImage} onClick={saveBenefit} /></div>
+                                    <div className='img'><Image id='deletebenefitimage' className='showhide' objectfit='contain' src={deleteSettingsImage} /></div>
 
                                 </div>
                                 <div id="benefitTable">
@@ -252,7 +254,7 @@ const [inputs, setInputs] = useState({});
 
                                         <thead>
                                             <tr>
-                                                <th>< input id='benefitheadercheckbox' name='headercheckbox[]' type={'checkbox'} onClick={() => selectAllcheckboxes('benefitheadercheckbox','input[id="benefitdatacheckbox"]','deleteimage')} ></input></th>
+                                                <th>< input id='benefitheadercheckbox' name='headercheckbox[]' type={'checkbox'} onClick={() => selectAllcheckboxes('benefitheadercheckbox','input[id="benefitdatacheckbox"]','deletebenefitimage')} ></input></th>
                                                 
                                                 <th >Benefit Name</th>
                                                 <th >Benefit Date</th>
@@ -407,8 +409,7 @@ const [inputs, setInputs] = useState({});
 
     function addBenefit() {
 
-        document.getElementById('saveimage').style.opacity = '1';
-        document.getElementById('saveimage').style.cursor = "pointer";
+        EnableImage('savebenefitimage');
         var table = document.getElementById("benefits");
         var row = table.insertRow();
         var cell0 = row.insertCell(0);
@@ -424,7 +425,7 @@ const [inputs, setInputs] = useState({});
     }
 
     function saveBenefit() {
-        if (document.getElementById('saveimage').style.opacity =="1") {
+        if (document.getElementById('savebenefitimage').style.opacity =="1") {
         var rows = document.getElementById('benefits').rows;
         const benefits=[]
         const benefit={};
@@ -434,27 +435,26 @@ const [inputs, setInputs] = useState({});
             checkboxElement.setAttribute("type","checkbox");
             checkboxElement.setAttribute("name","delete[]");
             checkboxElement.setAttribute("id","benefitdatacheckbox");
-            checkboxElement.addEventListener('click',()=>EnableOption('deleteimage','input[id="benefitdatacheckbox"]'));
+            checkboxElement.addEventListener('click',()=>EnableOption('deletebenefitimage','input[id="benefitdatacheckbox"]'));
             rows[i].cells[0].appendChild(checkboxElement);
             
         }
-        document.getElementById('saveimage').style.opacity = '0.2';
-        document.getElementById('saveimage').style.cursor = 'auto';
+        DisableImage('savebenefitimage');
         
     }
 
     }
     
-    function handleFocusOut(id) {
+    function handleFocusOut(e) {
           
-        var element=document.getElementById(id);
-        if(element.value===''){
-            console.log('FOCUSOUT :'+document.getElementById(id).value);
-       element.style.backgroundColor='red';
+       // var element=document.getElementById(id);
+        if(e.target.value===''){
+            console.log('FOCUSOUT :'+e.target.value);
+       e.target.style.backgroundColor='red';
         }
        else{
 
-        element.style.backgroundColor='lightblue';
+        e.target.style.backgroundColor='lightblue';
        }
         
        
@@ -466,7 +466,9 @@ const [inputs, setInputs] = useState({});
          
         const name=e.target.name;
         const value=e.target.value;
-        setInputs(values => ({...values, [name]: value}))
+        console.log('values: '+JSON.stringify(inputs));
+        setInputs({...inputs, [name]: value})
+        
    
 
     }

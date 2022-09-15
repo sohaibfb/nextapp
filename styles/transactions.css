@@ -1,3 +1,12 @@
+#addtransactionimage{
+
+    opacity: 0.2;
+    cursor: auto;
+    
+    }
+    
+
+
 .ShowTransaction {
 
     
@@ -58,7 +67,7 @@
 #ShowSearchEmployee {
 
     margin-top: 30px;
-    margin-left: 160px;
+    margin-left: 120px;
     padding-left: 0;
     list-style-type: none;
     z-index: 2;
@@ -78,5 +87,7 @@
 
 
 }
+
+
 
 

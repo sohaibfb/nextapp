@@ -29,7 +29,7 @@ export default function selectAllcheckboxes(id,checkboxid,enableid) {
 
             allCheckboxes[i].checked = false;
         }
-        EnableOption('deleteimage','input[id="benefitdatacheckbox"]');
+        EnableOption(enableid,'input[id="benefitdatacheckbox"]');
 
 
     }

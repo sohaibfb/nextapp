@@ -15,6 +15,7 @@ import ClearSelectedCheckboxes from '../../components/ClearSelectedCheckboxes';
 import saveSettingsImage from '../../public/Images/save.png';
 import EnableOption from '../../components/EnableOptions';
 import FetchData from '../../components/FetchData';
+import DisableImage from '../../components/Disableimage';
 
 
 
@@ -34,9 +35,10 @@ export default function SubsettingsTemplate({ posts }) {
 
   useEffect(() => {
     // clearcheckboxes();
-
-    ClearSelectedCheckboxes('showhide');
+    DisableImage('deletesettingsimage');
+    ClearSelectedCheckboxes('input[type=checkbox]:checked');
     updateLinksColor(mainpath, menulinkspath, defaultpath);
+   
 
 
 
@@ -55,8 +57,8 @@ export default function SubsettingsTemplate({ posts }) {
 
 
 
-        <div className='img'><Image id='addimage' objectfit='contain' src={addSettingsImage3} onClick={addSettings} /></div>
-        <div className='img'> <Image id='showhide' className='showhide' objectfit='contain' src={deleteSettingsImage} onClick={deleteSettings} /></div>
+        <div className='img'><Image id='addsettingsimage' objectfit='contain' src={addSettingsImage3} onClick={addSettings} /></div>
+        <div className='img'> <Image id='deletesettingsimage' className='showhide' objectfit='contain' src={deleteSettingsImage} onClick={deleteSettings} /></div>
         {/*<input id="addsetttingbtn" name="submit" type="submit" defaultValue="save" height={35} width={52} />*/}
       </div>
 
@@ -148,7 +150,7 @@ export default function SubsettingsTemplate({ posts }) {
           <tbody>
             {posts.map((post) => (
               <tr>
-                <td>< input id='delete' name='delete[]' type={'checkbox'} onClick={() => EnableOption('showhide', 'input[id="delete"]')} value={post.code}></input></td>
+                <td>< input id='delete' name='delete[]' type={'checkbox'} onClick={() => EnableOption('deletesettingsimage', 'input[id="delete"]')} value={post.code}></input></td>
                 <td>{post.code} </td>
 
 
@@ -202,7 +204,7 @@ export default function SubsettingsTemplate({ posts }) {
 
 
   async function deleteSettings() {
-    if (document.getElementById('showhide').style.opacity == "1") {
+    if (document.getElementById('deletesettingsimage').style.opacity == "1") {
       var deleteArray = [];
       var selectedChecked = document.querySelectorAll('input[type=checkbox]:checked')
       for (var i = 0; i < selectedChecked.length; i++) {

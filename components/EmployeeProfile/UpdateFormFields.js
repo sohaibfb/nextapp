@@ -1,8 +1,11 @@
 //this function will update form reuqired  fields  border.
 export default function UpdateFormFields(){
-   
+
+  console.log('update forms fields') 
     var input1=document.querySelectorAll("[title='userdefined']");
   for(var i=0;i<input1.length;i++){
+
+    
     
     if(input1[i].value==='' && input1[i].hasAttribute('required') ){
     
