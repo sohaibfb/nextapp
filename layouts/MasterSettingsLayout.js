@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Link from 'next/link'
 import { useRouter } from "next/router";
-import SettingsLayout from '../pages/temp/SettingsLayout';
+import SettingsLayout from '../temp/SettingsLayout';
 import Navigation from './Navigation';
 import SubSettingsLayout from './SubSettingsLayout';
 

@@ -1,7 +1,7 @@
 import React, { Component, useState, useEffect } from 'react';
 import { useRouter } from "next/router";
 import Image from 'next/image'
-import SettingsLayout from '../temp/SettingsLayout';
+import SettingsLayout from '../../temp/SettingsLayout';
 import MasterSettingsLayout from '../../layouts/MasterSettingsLayout';
 import addSettingsImage from '../../public/Images/addsettings.jpg';
 import addSettingsImage2 from '../../public/Images/addsettings2.png';
