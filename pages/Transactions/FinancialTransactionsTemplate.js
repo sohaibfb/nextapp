@@ -187,7 +187,7 @@ export default function FinancialTransactionsTemplate({ posts }) {
             </tr>
           </thead>
           <tbody>
-            {posts.map((post) => (
+            {posts.map((post,index) => (
               <tr>
                 <td>< input id='delete' name='delete[]' type={'checkbox'} onClick={() => ShowDeleteOption('deletetransactionimage', 'input[id="delete"]')} value={post.code}></input></td>
                 <td>{post.code} </td>

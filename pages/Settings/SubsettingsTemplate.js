@@ -133,7 +133,7 @@ export default function SubsettingsTemplate({ posts }) {
        </div>*/}
       
 
-      <div class="ShowSettings">
+      <div className="ShowSettings">
 
         <table>
 
@@ -148,7 +148,7 @@ export default function SubsettingsTemplate({ posts }) {
             </tr>
   </thead>
           <tbody>
-            {posts.map((post) => (
+            {posts.map((post,index) => (
               <tr>
                 <td>< input id='delete' name='delete[]' type={'checkbox'} onClick={() => EnableOption('deletesettingsimage', 'input[id="delete"]')} value={post.code}></input></td>
                 <td>{post.code} </td>
