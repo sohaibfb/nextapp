@@ -190,11 +190,13 @@ export default function FinancialTransactionsTemplate({ posts }) {
             {posts.map((post) => (
               <tr  key={post.id1}>
                 <td>< input id='delete' name='delete[]' type={'checkbox'} onClick={() => ShowDeleteOption('deletetransactionimage', 'input[id="delete"]')} value={post.code}></input></td>
-                <td>{post.code} </td>
+                <td>{post.transaction_name} </td>
 
 
-                <td>{post.english_description} </td>
-                <td>{post.arabic_description} </td>
+                <td>{post.transaction_date} </td>
+                <td>{post.transaction_end_date} </td>
+                <td>{post.hours} </td>
+                <td>{post.amount} </td>
 
 
 
@@ -241,7 +243,6 @@ export default function FinancialTransactionsTemplate({ posts }) {
       try {
 
         const ressult1 = await FetchData('https://sktest87.000webhostapp.com/loademployeesearch.php', 'post', searchEmployee);
-        const result2  = await FetchData('https://sktest87.000webhostapp.com/loademployeesearch.php', 'post', searchEmployee);
         var posts = await ressult1.json();
         // var data1=await JSON.parse(posts);
 
@@ -291,14 +292,24 @@ export default function FinancialTransactionsTemplate({ posts }) {
 
 
 
-    // const name=e.target.name;
-    // const value=e.target.value;
-    //  setInputs(values => ({...values, [name]: value}))
+
 
 
   }
 
-  function selectSearchedEmployee(id, name, familyName) {
+   function selectSearchedEmployee(id, name, familyName) {
+
+
+
+ 
+  
+  
+  
+   
+  
+
+
+    
 
    document.getElementById('addtransactionimage').style.opacity='1';
    document.getElementById('addtransactionimage').style.cursor='pointer';
@@ -422,7 +433,7 @@ export default function FinancialTransactionsTemplate({ posts }) {
     e.preventDefault();
    
      
-    const transDetails = { id:document.getElementById('EmployeeName').value, code: router.query.code, TransType: e.target.TransType.value, TransDate: e.target.TransDate.value, Hours: e.target.Hours.value, TransAmount: e.target.TransAmount.value };
+    const transDetails = { id:document.getElementById('showEmployeeId').value, code: router.query.code, TransType: e.target.TransType.value, TransDate: e.target.TransDate.value, Hours: e.target.Hours.value, TransAmount: e.target.TransAmount.value };
   
 
 
@@ -471,23 +482,21 @@ export default function FinancialTransactionsTemplate({ posts }) {
 
 export async function getServerSideProps(params) {
 
-  //var posts=[{"english_description":"IT"}];
+
   var posts = [];
-  //router.push({ pathname: router.pathname, query: { code: router.query.code, path: router.query.path } }, router.asPath);
+  //var id=document.getElementById('showEmployeeId').value;
+  
 
   console.log('params: ' + params.query.code);
-  //var FormData = require('form-data');
-  //var formdata = new FormData();
-  //formdata.append("code", "5");
-  //console.log('formdata : ' + formdata);
-  const data1 = { code: params.query.code };
+  
+  const data = { code: params.query.code};
   try {
-    const res = await FetchData('https://sktest87.000webhostapp.com/loadsettings.php', 'post', data1);
+    const result = await FetchData('https://sktest87.000webhostapp.com/loadtransactiondetails.php', 'post', data);
 
 
-    var res1 = res[0];
+ 
 
-    posts = await res.json();
+    posts = await result.json();
 
 
 
@@ -496,6 +505,8 @@ export async function getServerSideProps(params) {
     console.log('ERROR: ' + error);
 
   }
+
+
 
 
 
@@ -508,8 +519,10 @@ export async function getServerSideProps(params) {
   return {
     props: { posts: await posts, flag: '1' } // will be passed to the page component as props
   }
+
+
 }
-//SubsettingsTemplate.GetLayout = SettingsLayout
+
 FinancialTransactionsTemplate.GetLayout = MasterSettingsLayout;
 
 
