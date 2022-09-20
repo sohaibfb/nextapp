@@ -630,7 +630,7 @@ export async function getStaticProps(params) {
 
     //console.log('params: ' + params.query.code);
 
-    const data = { code: 1 };
+    const data = { code: 2 };
     try {
         const res = await fetch('https://sktest87.000webhostapp.com/loademployeedata.php', {
             method: 'post', // or 'PUT'
