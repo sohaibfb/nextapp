@@ -620,40 +620,27 @@ const [inputs, setInputs] = useState({});
 }
 
 
-export async function getServerSideProps(params) {
+export async function getStaticProps(params) {
 
    
 
-    //var posts=[{"english_description":"IT"}];
+ 
     var posts = [];
-    //router.push({ pathname: router.pathname, query: { code: router.query.code, path: router.query.path } }, router.asPath);
+   
 
-    console.log('params: ' + params.query.code);
-    //var FormData = require('form-data');
-    //var formdata = new FormData();
-    //formdata.append("code", "5");
-    //console.log('formdata : ' + formdata);
-    const data1 = { code: 1 };
+    //console.log('params: ' + params.query.code);
+
+    const data = { code: 1 };
     try {
         const res = await fetch('https://sktest87.000webhostapp.com/loademployeedata.php', {
             method: 'post', // or 'PUT'
-            mode: 'cors',
-            cache: 'no-cache',
             headers: {
-                'Content-Type': 'application/json',
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'Content-Type': 'multipart/form-data',
-                'Accept': 'application/json',
-                'Accept': 'application/x-www-form-urlencoded',
-                'Accept': 'multipart/form-data',
-                'Access-Control-Allow-Origin': '*',
-                'User-Agent': 'ANYTHING_WILL_WORK_HERE'
-              
+                'Content-Type': 'application/json', 
             },
-            referrerPolicy: 'no-referrer',
+      
 
-            body: JSON.stringify(data1),
-            //formdata,
+            body: /*data,*/JSON.stringify(data),
+
 
 
 
@@ -663,9 +650,6 @@ export async function getServerSideProps(params) {
         })
 
  
-        var res1 = res[0];
-        //posts= await res.text();
-        // posts= await posts.length;
         posts = await res.json();
 
 
