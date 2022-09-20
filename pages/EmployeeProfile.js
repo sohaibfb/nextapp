@@ -669,7 +669,7 @@ export async function getStaticProps(params) {
     }
 
     return {
-        props: { posts: await posts }, revalidate: 1, // will be passed to the page component as props
+        props: { posts: await posts }, revalidate: 0, // will be passed to the page component as props
     }
 }
 
