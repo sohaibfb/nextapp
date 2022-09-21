@@ -639,7 +639,7 @@ export async function getStaticProps(params) {
             },
       
 
-            body: /*data,*/JSON.stringify(data),
+         //   body: /*data,*/JSON.stringify(data),
 
 
 
