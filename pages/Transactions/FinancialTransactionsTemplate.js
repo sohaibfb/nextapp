@@ -239,7 +239,7 @@ export default function FinancialTransactionsTemplate({ posts }) {
 
       try {
 
-        const result = await FetchData('https://sktest87.000webhostapp.com/loademployeesearch.php', 'post', searchEmployee,true);
+        const result = await FetchData('https://sktest87.000webhostapp.com/loademployeesearch.php', 'post',searchEmployee,true);
         var posts = await result.json();
 
 

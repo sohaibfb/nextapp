@@ -334,7 +334,7 @@ const [inputs, setInputs] = useState({});
 
         try {
            
-            const result = await FetchData('https://sktest87.000webhostapp.com/loademployeeprofilesettings.php','post','','false');
+            const result = await FetchData('https://sktest87.000webhostapp.com/loademployeeprofilesettings.php','post','',false);
            
 
             posts = await result.json();

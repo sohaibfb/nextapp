@@ -37,9 +37,8 @@ export default async function FetchData(link, type, data,connectionwithcode) {
       
     
         headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-          //'User-Agent': 'ANYTHING_WILL_WORK_HERE'
+      //    'Content-Type': 'application/json',
+      
           
          
         },
