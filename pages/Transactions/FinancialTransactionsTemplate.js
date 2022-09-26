@@ -336,7 +336,7 @@ export default function FinancialTransactionsTemplate({ posts }) {
     const transDetails = { code: code };
 
     try {
-      const res = await FetchData('https://sktest87.000webhostapp.com/loadsettings.php', 'post', transDetails)
+      const res = await FetchData('https://sktest87.000webhostapp.com/loadsettings.php', 'post', transDetails,true)
 
 
 
