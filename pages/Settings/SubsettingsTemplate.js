@@ -1,18 +1,12 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, {useState, useEffect } from 'react';
 import { useRouter } from "next/router";
 import Image from 'next/image'
-import SettingsLayout from '../../temp/SettingsLayout';
 import MasterSettingsLayout from '../../layouts/MasterSettingsLayout';
-import addSettingsImage from '../../public/Images/addsettings.jpg';
-import addSettingsImage2 from '../../public/Images/addsettings2.png';
 import addSettingsImage3 from '../../public/Images/addsettings3.png';
 import deleteSettingsImage from '../../public/Images/delete4.png';
-import deleteSettingsImagehover from '../../public/Images/deletehover.png';
 import updateLinksColor from '../../components/updateLinksColor';
 import ClosePage from '../../components/ClosePage';
-import ShowDeleteOption from '../../components/EnableOptions';
 import ClearSelectedCheckboxes from '../../components/ClearSelectedCheckboxes';
-import saveSettingsImage from '../../public/Images/save.png';
 import EnableOption from '../../components/EnableOptions';
 import FetchData from '../../components/FetchData';
 import DisableImage from '../../components/DisableImg';
@@ -149,7 +143,7 @@ export default function SubsettingsTemplate({ posts }) {
   </thead>
           <tbody>
             {posts.map((post) => (
-              <tr  key={post.id1}>
+              <tr  key={post.code}>
                 <td>< input id='delete' name='delete[]' type={'checkbox'} onClick={() => EnableOption('deletesettingsimage', 'input[id="delete"]')} value={post.code}></input></td>
                 <td>{post.code} </td>
 
@@ -218,7 +212,7 @@ export default function SubsettingsTemplate({ posts }) {
       //console.log('Settings Dats: ' + settingData);
       try {
 
-        const res = await FetchData('https://sktest87.000webhostapp.com/deletesettings.php', 'post', deleteSettinges);
+        const res = await FetchData('https://sktest87.000webhostapp.com/deletesettings.php', 'post', deleteSettinges,false);
         var posts = await res.text();
         if (posts != null) {
 
@@ -249,7 +243,7 @@ export default function SubsettingsTemplate({ posts }) {
     console.log('Settings Dats: ' + settingData);
     try {
 
-      const res = await FetchData('https://sktest87.000webhostapp.com/addsettings.php', 'post', settingData);
+      const res = await FetchData('https://sktest87.000webhostapp.com/addsettings.php', 'post', settingData,true);
 
       var posts = await res.text();
 
@@ -285,15 +279,19 @@ export async function getServerSideProps(params) {
 
   var posts = [];
   console.log('params: ' + params.query.code);
-  const data1 = { code: params.query.code };
+  const data = { code: params.query.code };
   try {
 
-    const res = await FetchData('https://sktest87.000webhostapp.com/loadsettings.php', 'post', data1);
+    const result = await FetchData('https://sktest87.000webhostapp.com/loadsettings.php', 'post', data,true);
 
 
-    var res1 = res[0];
+  
 
-    posts = await res.json();
+
+  
+
+
+    posts = await result.json();
 
 
 
@@ -312,7 +310,6 @@ export async function getServerSideProps(params) {
     props: { posts: await posts, flag: '1' } // will be passed to the page component as props
   }
 }
-//SubsettingsTemplate.GetLayout = SettingsLayout
 SubsettingsTemplate.GetLayout = MasterSettingsLayout;
 
 

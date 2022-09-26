@@ -19,7 +19,7 @@ export default function OtherIncomeTransactionTemplate() {
                     {/*<!--Transaction Date-->*/}
                     <label htmlFor="TransDate"><span>Other Income Date:<span className="required">*</span></span><input id="TransDate" name="TransDate" type="date" autoFocus /></label>
 
-                    <input id="Hours" name="Hours" type="number"  value={'0'} hidden autoFocus></input>
+                    <input id="Hours" name="Hours" type="number"  defaultvalue={'0'} hidden autoFocus></input>
 
                     {/*<!--Transaction Amount-->*/}
                     <label htmlFor="TransAmount"><span>Other Income Amount:<span className="required">*</span></span><input id="TransAmount" name="TransAmount" type="number" autoFocus /></label>

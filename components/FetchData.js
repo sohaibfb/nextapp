@@ -1,32 +1,62 @@
 //this function for loading and updating data in database
-export default  async  function  FetchData(link,type,data){
+export default async function FetchData(link, type, data,connectionwithcode) {
+
+  var result=[];
+
+  switch (connectionwithcode) {
+
+    case false:{
+
+      console.log('connection without data condition');
+
+       result = await fetch(link, {
+
+        method: type,
+        
+      
+        headers: {
+         // 'Content-Type': 'application/json',
+          
+  
+        },
+  
+      })
+      
+
+    }
+
+      break;
+
+    case true:{
+
+      console.log('connection wtih data condition');
+
+       result = await fetch(link, {
+
+        method: type, 
+      
     
-
-    const res = await fetch(link, {
-
-        method: type, // or 'PUT'
-        mode: 'cors',
-        cache: 'no-cache',
         headers: {
           'Content-Type': 'application/json',
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'Content-Type': 'multipart/form-data',
-          'Accept': 'application/json',
-          'Accept': 'application/x-www-form-urlencoded',
-          'Accept': 'multipart/form-data',
-          //'Access-Control-Allow-Origin': '*',
-          'User-Agent': 'ANYTHING_WILL_WORK_HERE'
-          //'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.62'
+          'Access-Control-Allow-Origin': '*',
+          //'User-Agent': 'ANYTHING_WILL_WORK_HERE'
+          
+         
         },
-        referrerPolicy: 'no-referrer',
+     //   referrerPolicy: 'no-referrer',
+  
 
         body: JSON.stringify(data),
 
       })
+      console.log('connection data again');
+    }
+    break;
+    
 
-      return res;
 
+  }
 
-
+  return  result;
 
 }

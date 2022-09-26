@@ -1,18 +1,13 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from "next/router";
 import Image from 'next/image'
-import SettingsLayout from '../../temp/SettingsLayout';
 import MasterSettingsLayout from '../../layouts/MasterSettingsLayout';
-import addSettingsImage from '../../public/Images/addsettings.jpg';
-import addSettingsImage2 from '../../public/Images/addsettings2.png';
 import addSettingsImage3 from '../../public/Images/addsettings3.png';
 import deleteSettingsImage from '../../public/Images/delete4.png';
-import deleteSettingsImagehover from '../../public/Images/deletehover.png';
 import updateLinksColor from '../../components/updateLinksColor';
 import ClosePage from '../../components/ClosePage';
 import ShowDeleteOption from '../../components/EnableOptions';
 import ClearSelectedCheckboxes from '../../components/ClearSelectedCheckboxes';
-import saveSettingsImage from '../../public/Images/save.png';
 import FetchData from '../../components/FetchData';
 import LoanTransactionTemplate from './LoanTransactionsTemplate';
 import OtherIncomeTransactionTemplate from './OtherIncomeTransactionTemplate';
@@ -188,7 +183,7 @@ export default function FinancialTransactionsTemplate({ posts }) {
           </thead>
           <tbody>
             {posts.map((post) => (
-              <tr  key={post.id1}>
+              <tr  key={post.ID+post.tranaction_code+post.transaction_date}>
                 <td>< input id='delete' name='delete[]' type={'checkbox'} onClick={() => ShowDeleteOption('deletetransactionimage', 'input[id="delete"]')} value={post.code}></input></td>
                 <td>{post.transaction_name} </td>
 
@@ -239,12 +234,13 @@ export default function FinancialTransactionsTemplate({ posts }) {
 
     else {
 
+     
+
 
       try {
 
-        const ressult1 = await FetchData('https://sktest87.000webhostapp.com/loademployeesearch.php', 'post', searchEmployee);
-        var posts = await ressult1.json();
-        // var data1=await JSON.parse(posts);
+        const result = await FetchData('https://sktest87.000webhostapp.com/loademployeesearch.php', 'post', searchEmployee,true);
+        var posts = await result.json();
 
 
 
@@ -399,7 +395,7 @@ export default function FinancialTransactionsTemplate({ posts }) {
       const transDetails = { code: router.query.code, deletesettingsarray: deleteArray };
       console.log('Settings Dats: ' + settingData);
       try {
-        const res = await FetchData('https://sktest87.000webhostapp.com/deletesettings.php', 'post', transDetails);
+        const res = await FetchData('https://sktest87.000webhostapp.com/deletesettings.php', 'post', transDetails,true);
 
 
         console.log('Settings Data: ' + settingData);
@@ -444,7 +440,7 @@ export default function FinancialTransactionsTemplate({ posts }) {
 
  
     try {
-      const res = await FetchData('https://sktest87.000webhostapp.com/savetransaction.php', 'post', transDetails);
+      const res = await FetchData('https://sktest87.000webhostapp.com/savetransaction.php', 'post', transDetails,true);
 
 
   
@@ -491,7 +487,7 @@ export async function getServerSideProps(params) {
   
   const data = { code: params.query.code};
   try {
-    const result = await FetchData('https://sktest87.000webhostapp.com/loadtransactiondetails.php', 'post', data);
+    const result = await FetchData('https://sktest87.000webhostapp.com/loadtransactiondetails.php', 'post', data,true);
 
 
  

@@ -1,8 +1,7 @@
-import MasterSettingsLayout from "../layouts/MasterSettingsLayout"
-import React, { Component, createElement, useEffect,useState } from 'react';
+
+import React, { useEffect,useState } from 'react';
 import { useRouter } from "next/router";
 import Image from 'next/image'
-import addEmployeeImage from '../public/Images/download (1).jpg'
 import addEmployeeImage1 from '../public/Images/addemployee.png'
 import addallowanceImage from '../public/Images/addsettings3.png';
 import saveallowanceImage from '../public/Images/save.png';
@@ -11,9 +10,9 @@ import selectAllcheckboxes from "../components/SelectAllCheckboxes";
 import ClearSelectedCheckboxes from "../components/ClearSelectedCheckboxes";
 import UpdateFormFields from "../components/EmployeeProfile/UpdateFormFields";
 import EnableOption from '../components/EnableOptions';
-import saveEmployeeImage from '../public/Images/save.png';
 import DisableImage from "../components/DisableImg";
 import EnableImage from "../components/EnableImage";
+import FetchData from "../components/FetchData";
 
 
 
@@ -83,14 +82,14 @@ const [inputs, setInputs] = useState({});
                     <tbody>
    
                         {posts.map((post) => (
-                            <tr key={post.id1}>
+                            <tr key={post.ID}>
                                 <td>< input id='employeedatacheckbox' name='datacheckbox[]' type={'checkbox'} onClick={() => EnableOption('addtransactionimage','input[id="employeedatacheckbox"]')} ></input></td>
                                 <td >{post.ID}</td>
                                 <td >{post.First_Name} </td>
                                 <td >{post.Family_Name} </td>
                                 <td >{post.Hiring_Date} </td>
-                                <td key={post.Nationality}>{post.Nationality} </td>
-                                <td key={post.Start_Salary}>{post.Start_Salary} </td>
+                                <td >{post.Nationality} </td>
+                                <td >{post.Start_Salary} </td>
 
 
 
@@ -321,42 +320,24 @@ const [inputs, setInputs] = useState({});
 
 
     async function openAddEmployeePage() {
-
+        var posts=[];
         if (openedflag == false) {
 
             document.getElementById('myModal').style.display = 'block'
             document.getElementById('Fname').focus();
             openedflag = true;
+            
         }
 
 
-        const settingData = { code: 1 };
+       
 
         try {
-            const res = await fetch('https://sktest87.000webhostapp.com/loademployeeprofilesettings.php', {
+           
+            const result = await FetchData('https://sktest87.000webhostapp.com/loademployeeprofilesettings.php','post','','false');
+           
 
-                method: 'post', // or 'PUT'
-                mode: 'cors',
-                cache: 'no-cache',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    'Content-Type': 'multipart/form-data',
-                    'Accept': 'application/json',
-                    'Accept': 'application/x-www-form-urlencoded',
-                    'Accept': 'multipart/form-data',
-                    //'Access-Control-Allow-Origin': '*',
-                    'User-Agent': 'ANYTHING_WILL_WORK_HERE'
-                    //'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.62'
-                },
-                referrerPolicy: 'no-referrer',
-
-                body: JSON.stringify(settingData),
-
-            })
-
-
-            var posts = await res.json();
+            posts = await result.json();
 
             if (posts != null) {
 
@@ -548,33 +529,23 @@ const [inputs, setInputs] = useState({});
 
         };
 
-        // const settingData = { code: router.query.code, Ename: e.target.Ename.value, Aname: e.target.Aname.value };
+        
         console.log('employeedata: ' + JSON.stringify(employeedata));
         try {
-            const res = await fetch('https://sktest87.000webhostapp.com/addemployee.php', {
+            const result = await FetchData('https://sktest87.000webhostapp.com/addemployee.php','post',employeedata,true);
 
-                method: 'post', // or 'PUT'
-                mode: 'cors',
-                cache: 'no-cache',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    'Content-Type': 'multipart/form-data',
-                    'Accept': 'application/json',
-                    'Accept': 'application/x-www-form-urlencoded',
-                    'Accept': 'multipart/form-data',
-                    //'Access-Control-Allow-Origin': '*',
-                    'User-Agent': 'ANYTHING_WILL_WORK_HERE'
-                    //'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.62'
-                },
-                referrerPolicy: 'no-referrer',
+               
+                
+            
+               
 
-                body: JSON.stringify(employeedata),
+        
 
-            })
+         
 
 
-            var posts = await res.text();
+
+            var posts = await result.text();
             console.log('post Data: ' + posts);
 
 
@@ -620,37 +591,21 @@ const [inputs, setInputs] = useState({});
 }
 
 
-export async function getStaticProps(params) {
+export async function getServerSideProps(params) {
 
-   
+
 
  
     var posts = [];
    
 
-    //console.log('params: ' + params.query.code);
 
-    const data = { code: 2 };
     try {
-        const res = await fetch('https://sktest87.000webhostapp.com/loademployeedata.php', {
-            method: 'post', // or 'PUT'
-            headers: {
-                'Content-Type': 'application/json', 
-            },
+        const result =await FetchData('https://sktest87.000webhostapp.com/loademployeedata.php','post','',false);
       
 
-         //   body: /*data,*/JSON.stringify(data),
-
-
-
-
-
-
-
-        })
-
  
-        posts = await res.json();
+        posts = await result.json();
 
 
 
@@ -669,7 +624,7 @@ export async function getStaticProps(params) {
     }
 
     return {
-        props: { posts: await posts }, revalidate: 1, // will be passed to the page component as props
+        props: { posts: await posts }, // will be passed to the page component as props
     }
 }
 
