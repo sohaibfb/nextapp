@@ -31,6 +31,7 @@ export default function FinancialTransactionsTemplate({ posts }) {
   const code = router.query.code;
 
   const [checkbox, updatechecboxes] = useState("");
+  const [employeeID, updateemployeeID] = useState("");
 
 
   useEffect(() => {
@@ -65,7 +66,7 @@ export default function FinancialTransactionsTemplate({ posts }) {
         <div className='employeesearch'>
 
           <label htmlFor="EmployeeName">Employee Name:</label>
-          <input id="showEmployeeId" name="EmployeeName" type="text" onChange={handleChange} autoFocus />
+          <input id="showEmployeeId" value={employeeID} name="EmployeeName" type="text"  onChange={handleChange} autoFocus />
 
 
         </div>
@@ -213,6 +214,18 @@ export default function FinancialTransactionsTemplate({ posts }) {
   );
 
 
+  
+
+ function handlemouseOver(){
+
+  console.log('row:'+ this);
+  console.log('  ID:'+ this.childNodes[0].innerHTML);
+
+  console.log('  employee:'+ this.childNodes[1].innerHTML);
+
+
+
+ }
 
   async function handleChange(e) {
 
@@ -220,7 +233,7 @@ export default function FinancialTransactionsTemplate({ posts }) {
 
   
 
-
+    updateemployeeID(e.target.value);
     const searchEmployee = { code: router.query.code, name: document.getElementById('showEmployeeId').value };
     const searchTable = document.getElementById('ShowSearchEmployee');
     if (document.getElementById('showEmployeeId').value === "") {
@@ -253,17 +266,21 @@ export default function FinancialTransactionsTemplate({ posts }) {
         for (var key in posts) {
           console.log("serched employee: " + posts[key].ID);
           var row = document.createElement('tr');
+          row.id=posts[key].Family_Name;
           var rowData1 = row.insertCell(0);
           var rowData2 = row.insertCell(1);
           rowData1.innerHTML = posts[key].ID;
           rowData2.innerHTML = posts[key].First_Name;
-          row.addEventListener('click', () => selectSearchedEmployee(posts[key].ID, posts[key].First_Name, posts[key].Family_Name));
-
+          row.addEventListener('click',selectSearchedEmployee);
+          row.addEventListener('mouseover',handlemouseOver);
+          
 
           searchTable.appendChild(row);
 
 
         }
+        
+
 
 
 
@@ -293,16 +310,7 @@ export default function FinancialTransactionsTemplate({ posts }) {
 
   }
 
-   function selectSearchedEmployee(id, name, familyName) {
-
-
-
- 
-  
-  
-  
-   
-  
+   function selectSearchedEmployee() {
 
 
     
@@ -311,9 +319,9 @@ export default function FinancialTransactionsTemplate({ posts }) {
    document.getElementById('addtransactionimage').style.cursor='pointer';
     const searchTable = document.getElementById('ShowSearchEmployee');
     searchTable.style.visibility = 'hidden';
-    console.log("serched employee111");
-    document.getElementById('showEmployeeId').value = id;
-    document.getElementById('showEmployeeName').innerHTML = name + "   " + familyName;
+    console.log("serched employee11: "+this.childNodes[0].innerHTML);
+    updateemployeeID(this.childNodes[0].innerHTML);
+    document.getElementById('showEmployeeName').innerHTML = this.childNodes[1].innerHTML+" "+this.id;
 
 
 

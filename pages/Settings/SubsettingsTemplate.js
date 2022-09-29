@@ -212,7 +212,7 @@ export default function SubsettingsTemplate({ posts }) {
       //console.log('Settings Dats: ' + settingData);
       try {
 
-        const res = await FetchData('https://sktest87.000webhostapp.com/deletesettings.php', 'post', deleteSettinges,false);
+        const res = await FetchData('https://sktest87.000webhostapp.com/deletesettings.php', 'post', deleteSettinges,true);
         var posts = await res.text();
         if (posts != null) {
 
