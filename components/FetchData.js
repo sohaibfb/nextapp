@@ -14,11 +14,11 @@ export default async function FetchData(link, type, data,connectionwithcode) {
         method: type,
         
       
-        headers: {
+     //   headers: {
          // 'Content-Type': 'application/json',
           
   
-        },
+       // },
   
       })
       
@@ -29,21 +29,14 @@ export default async function FetchData(link, type, data,connectionwithcode) {
 
     case true:{
 
-      console.log('connection wtih data condition');
+
+      console.log('connection with data condition');
 
        result = await fetch(link, {
 
         method: type, 
       
     
-        headers: {
-      //    'Content-Type': 'application/json',
-      
-          
-         
-        },
-     //   referrerPolicy: 'no-referrer',
-  
 
         body: JSON.stringify(data),
 
