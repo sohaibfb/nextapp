@@ -23,54 +23,61 @@ import DisableImage from '../../components/DisableImg';
 
 export default function FinancialTransactionsTemplate({ posts }) {
 
- 
-  const [data, setData] = useState(null);
-  const [isloading,setLoading]= useState(false)
-  
+
+
+  //const [isloading, setLoading] = useState(false)
+    
   const router = useRouter();
   const mainpath = router.query.mainpath;
   const defaultpath = router.query.path;
   const menulinkspath = router.query.pathname;
   const code = router.query.code;
-  const inputs={code:code,ID:employeeID};
+  const inputs = { code: code, ID: employeeID };
 
   const [checkbox, updatechecboxes] = useState("");
   const [employeeID, updateemployeeID] = useState("");
- // const fetcher = (...args) => fetch(...args).then((res) => res.json());
-  //const { data, error } = useSWR(
-   // ("https://sktest87.000webhostapp.com/loademployeetransactionsdetails.php"),{method:'post'},
-    //fetcher
-  //);
-  //if (error) return <div>failed to load</div>
-  //if (!data) return <div>loading...</div>
+  const [employeeIDFlag,updateemployeeidflag]=useState(false);
+
+  //this flag to handle when to update employee transactions on change employee id or when select between transactions for the same employee.
 
 
-  useEffect(() => {
-    setLoading(true);
-    fetch("https://sktest87.000webhostapp.com/loadtransactiondetails.php", {
-
-      method: 'post', 
-    
-  
-
-      body: JSON.stringify(inputs),
-
-    })
-.then((res)=>res.json()).then((data1)=>{
-      console.log("transaction details: ",data1)
-    setData(data1);
-   setLoading(false);});
+  /* const fetcher = (url) => fetch(url, {
+ 
+     method: 'post', 
    
+ 
+ 
+     body: JSON.stringify(inputs),
+ 
+   })
+ .then((res)=>res.json());
+ 
+   const { data, error } = useSWR('https://sktest87.000webhostapp.com/loadtransactiondetails.php',fetcher)*/
+  useEffect(() => {
+
+
+
     DisableImage('deletetransactionimage');
     ClearSelectedCheckboxes('input[type=checkbox]:checked');
     updateLinksColor(mainpath, menulinkspath, defaultpath);
+    updatEemployeeTransaction(employeeID);
+
+   
+
+    console.log("use effect called");
 
 
 
-  },[])
+  })
 
-  //if (isloading) return <div>failed to load</div>;
- // if (!data) return <div>loading...</div>;
+ 
+
+
+
+
+  // if (error) return <div>failed to load</div>
+  //if (!data) return <div>loading...</div>
+
 
 
 
@@ -84,7 +91,7 @@ export default function FinancialTransactionsTemplate({ posts }) {
       <div className='actionbar' >
 
         <div className='img'><Image id='addtransactionimage' objectfit='contain' src={addSettingsImage3} onClick={addTransactionForm} /></div>
-        <div className='img'><Image id='deletetransactionimage'objectfit='contain' src={deleteSettingsImage} onClick={deleteTransaction} /></div>
+        <div className='img'><Image id='deletetransactionimage' objectfit='contain' src={deleteSettingsImage} onClick={deleteTransaction} /></div>
 
 
       </div>
@@ -196,6 +203,7 @@ export default function FinancialTransactionsTemplate({ posts }) {
       <input name="scode" id="scode" type="hidden" value={router.query.code} />
 
       <div className="ShowTransaction">
+        {/*!data?<div> loading</div>:*/}
         <table id="transactionsdetailstable">
 
 
@@ -212,7 +220,12 @@ export default function FinancialTransactionsTemplate({ posts }) {
             </tr>
           </thead>
           <tbody id="transactiondetailstbody">
-              {data.map((data1) => (
+
+            {/*
+            
+            
+            
+            data.map((data1) => (
               <tr  key={data1.ID+data1.tranaction_code+data1.transaction_date}>
                 <td>< input id='delete' name='delete[]' type={'checkbox'} onClick={() => ShowDeleteOption('deletetransactionimage', 'input[id="delete"]')} value={data1.code}></input></td>
                 <td>{data1.transaction_name} </td>
@@ -224,7 +237,9 @@ export default function FinancialTransactionsTemplate({ posts }) {
 
 
               </tr>
-              ))}
+          )
+          )
+            */ }
 
           </tbody>
         </table>
@@ -251,7 +266,7 @@ export default function FinancialTransactionsTemplate({ posts }) {
 
 
 
-
+    updateemployeeidflag(false);
     updateemployeeID(e.target.value);
     const searchEmployee = { code: router.query.code, name: document.getElementById('showEmployeeId').value };
     const searchTable = document.getElementById('ShowSearchEmployee');
@@ -267,7 +282,7 @@ export default function FinancialTransactionsTemplate({ posts }) {
     else {
 
 
-
+     
 
       try {
 
@@ -304,7 +319,7 @@ export default function FinancialTransactionsTemplate({ posts }) {
 
 
 
-        //  posts.map(post => (searchTable.innerHTML += '<tr><td>' + post.ID + '</td>' + '<td>' + post.First_Name + '</td></li>'));
+
 
 
 
@@ -333,66 +348,91 @@ export default function FinancialTransactionsTemplate({ posts }) {
   async function selectSearchedEmployee() {
 
 
-
-
     document.getElementById('addtransactionimage').style.opacity = '1';
     document.getElementById('addtransactionimage').style.cursor = 'pointer';
     const searchTable = document.getElementById('ShowSearchEmployee');
-    const transacionsDetailsTable = document.getElementById('transactiondetailstbody');
+
     searchTable.style.visibility = 'hidden';
     console.log("serched employee11: " + this.childNodes[0].innerHTML);
+    updateemployeeidflag(true);
+    
     updateemployeeID(this.childNodes[0].innerHTML);
+  
     document.getElementById('showEmployeeName').innerHTML = this.childNodes[1].innerHTML + " " + this.id;
-
-
-
-    var posts = [];
-
-    const data = {code:code,ID:this.childNodes[0].innerHTML};
-    try {
-      const result = await FetchData('https://sktest87.000webhostapp.com/loademployeetransactionsdetails.php', 'post', data, true);
-
-
-
-
-      posts = await result.json();
+   
 
 
 
 
 
 
-      for (var key in posts) {
-        console.log("serched employee: " + posts[key].ID);
-        var row = document.createElement('tr');
-        row.id = posts[key].ID
-        var rowData1 = row.insertCell(0);
-        var rowData2 = row.insertCell(1);
-        var rowData3 = row.insertCell(2);
-        var rowData4 = row.insertCell(3);
-        var rowData5 = row.insertCell(4);
-        var rowData6 = row.insertCell(5);
-        var checkboxElement = document.createElement("input");
-        checkboxElement.setAttribute("type", "checkbox");
-        checkboxElement.setAttribute("id", "delete")
-        checkboxElement.setAttribute("name", "delete[]")
-        checkboxElement.setAttribute("value", posts[key].ID);
-        checkboxElement.addEventListener('click', () => ShowDeleteOption('deletetransactionimage', 'input[id="delete"]'));
 
-        rowData1.appendChild(checkboxElement);
-        rowData2.innerHTML = posts[key].transaction_name;
-        rowData3.innerHTML = posts[key].transaction_date;
-        rowData4.innerHTML = posts[key].transaction_end_date;
-        rowData5.innerHTML = posts[key].hours;
-        rowData6.innerHTML = posts[key].amount;
+
+  }
+
+  async function updatEemployeeTransaction(id) {
+    console.log("FLAG: ",employeeIDFlag);
+    if (document.getElementById('showEmployeeId').value != "" && employeeIDFlag===true) {
+
+      console.log("function called: ", id);
+      var posts = [];
+      var transacionsDetailsTable = document.getElementById('transactiondetailstbody');
+      transacionsDetailsTable.innerHTML = "";
+
+      const data = { code: code, ID: id };
+      try {
+        const result = await FetchData('https://sktest87.000webhostapp.com/loademployeetransactionsdetails.php', 'post', data, true);
+
+
+
+
+        posts = await result.json();
 
 
 
 
 
 
-        transacionsDetailsTable.appendChild(row);
+        for (var key in posts) {
+          console.log("serched employee: " + posts[key].ID);
+          var row = document.createElement('tr');
+          row.id = posts[key].ID
+          var rowData1 = row.insertCell(0);
+          var rowData2 = row.insertCell(1);
+          var rowData3 = row.insertCell(2);
+          var rowData4 = row.insertCell(3);
+          var rowData5 = row.insertCell(4);
+          var rowData6 = row.insertCell(5);
+          var checkboxElement = document.createElement("input");
+          checkboxElement.setAttribute("type", "checkbox");
+          checkboxElement.setAttribute("id", "delete")
+          checkboxElement.setAttribute("name", "delete[]")
+          checkboxElement.setAttribute("value", posts[key].ID);
+          checkboxElement.addEventListener('click', () => ShowDeleteOption('deletetransactionimage', 'input[id="delete"]'));
 
+          rowData1.appendChild(checkboxElement);
+          rowData2.innerHTML = posts[key].transaction_name;
+          rowData3.innerHTML = posts[key].transaction_date;
+          rowData4.innerHTML = posts[key].transaction_end_date;
+          rowData5.innerHTML = posts[key].hours;
+          rowData6.innerHTML = posts[key].amount;
+
+
+
+
+
+
+          transacionsDetailsTable.appendChild(row);
+
+
+        }
+
+
+
+
+
+      } catch (error) {
+        console.log('ERROR: ' + error);
 
       }
 
@@ -400,21 +440,13 @@ export default function FinancialTransactionsTemplate({ posts }) {
 
 
 
-    } catch (error) {
-      console.log('ERROR: ' + error);
-
-    }
-
-
-
-
-
-    if (!posts) {
-      return {
-        notFound: true,
+      if (!posts) {
+        return {
+          notFound: true,
+        }
       }
-    }
 
+    }
 
 
 
