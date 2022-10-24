@@ -168,10 +168,13 @@ const [inputs, setInputs] = useState({});
 
                                 {/*<!--Marital Status-->*/}
                                 <label htmlFor=""><span>Marital Status :</span><select id="MaritalStatus" title='userdefined'  name="MaritalStatus" onChange={handleChange} onBlur={handleFocusOut} required >
-                                <option title='userdefined' value='' selected>Choose</option>
+                                <option title='userdefined'  selected>Choose</option>
                                     <option value="1">Single</option>
                                     <option value="2">Married</option>
                                     <option value="3">Divorced</option>
+
+
+
                                 </select></label>
 
 

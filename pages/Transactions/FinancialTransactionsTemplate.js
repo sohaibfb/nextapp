@@ -10,11 +10,11 @@ import ClosePage from '../../components/ClosePage';
 import ShowDeleteOption from '../../components/EnableOptions';
 import ClearSelectedCheckboxes from '../../components/ClearSelectedCheckboxes';
 import FetchData from '../../components/FetchData';
-import LoanTransactionTemplate from './LoanTransactionsTemplate';
-import OtherIncomeTransactionTemplate from './OtherIncomeTransactionTemplate';
-import OtherDeductionsTransactionTemplate from './OtherDeductionsTransactionTemplate';
-import NonpayrolTransactionTemplate from './NonpayrolTransactionTemplate';
-import OvertimeTransactionTemplate from './OvertimeTransactionTemplate';
+import LoanTransactionTemplate from './Transactions Types/LoanTransactionsTemplate';
+import OtherIncomeTransactionTemplate from './Transactions Types/OtherIncomeTransactionTemplate';
+import OtherDeductionsTransactionTemplate from './Transactions Types/OtherDeductionsTransactionTemplate';
+import NonpayrolTransactionTemplate from './Transactions Types/NonpayrolTransactionTemplate';
+import OvertimeTransactionTemplate from './Transactions Types/OvertimeTransactionTemplate';
 import DisableImage from '../../components/DisableImg';
 
 
@@ -64,7 +64,6 @@ export default function FinancialTransactionsTemplate({ posts }) {
 
    
 
-    console.log("use effect called");
 
 
 
@@ -371,10 +370,10 @@ export default function FinancialTransactionsTemplate({ posts }) {
   }
 
   async function updatEemployeeTransaction(id) {
-    console.log("FLAG: ",employeeIDFlag);
+   
     if (document.getElementById('showEmployeeId').value != "" && employeeIDFlag===true) {
 
-      console.log("function called: ", id);
+      
       var posts = [];
       var transacionsDetailsTable = document.getElementById('transactiondetailstbody');
       transacionsDetailsTable.innerHTML = "";

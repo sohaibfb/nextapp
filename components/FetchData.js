@@ -7,7 +7,7 @@ export default async function FetchData(link, type, data,connectionwithcode) {
 
     case false:{
 
-      console.log('connection without data condition');
+
 
        result = await fetch(link, {
 
@@ -30,7 +30,7 @@ export default async function FetchData(link, type, data,connectionwithcode) {
     case true:{
 
 
-      console.log('connection with data condition');
+     
 
        result = await fetch(link, {
 
@@ -41,7 +41,7 @@ export default async function FetchData(link, type, data,connectionwithcode) {
         body: JSON.stringify(data),
 
       })
-      console.log('connection data again');
+  
     }
     break;
     

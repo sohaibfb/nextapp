@@ -50,7 +50,7 @@ export default function HeaderPage({ children }) {
           <button className="navbar-element-btn"><i class="fa fa-calculator"></i> Transactions</button>
           <div className="dropdown">
             <Link as='Transactions/Overtime' href={{ pathname: "/Transactions/FinancialTransactionsTemplate", query: { mainpath: 2, code: '9', path: '1', pathname: 'Overtime' } }}>Financial Transactions</Link>
-            <a href>Salary Process</a>
+            <Link href="/Transactions/SalariesTransactions">Salary Process</Link>
             <a href>Voucher Process</a>
           </div>
         </div>

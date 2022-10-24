@@ -1,4 +1,4 @@
-import React, {useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from "next/router";
 import Image from 'next/image'
 import MasterSettingsLayout from '../../layouts/MasterSettingsLayout';
@@ -32,7 +32,7 @@ export default function SubsettingsTemplate({ posts }) {
     DisableImage('deletesettingsimage');
     ClearSelectedCheckboxes('input[type=checkbox]:checked');
     updateLinksColor(mainpath, menulinkspath, defaultpath);
-   
+
 
 
 
@@ -110,7 +110,7 @@ export default function SubsettingsTemplate({ posts }) {
       </div >
       <input name="scode" id="scode" type="hidden" value={router.query.code} />
 
-    {/*   <div className='showSettings'>
+      {/*   <div className='showSettings'>
        <table>
 
 
@@ -125,7 +125,7 @@ export default function SubsettingsTemplate({ posts }) {
 </thead>
 </table>
        </div>*/}
-      
+
 
       <div className="ShowSettings">
 
@@ -140,10 +140,10 @@ export default function SubsettingsTemplate({ posts }) {
               <th>English Description</th>
               <th>Arabic Description</th>
             </tr>
-  </thead>
+          </thead>
           <tbody>
             {posts.map((post) => (
-              <tr  key={post.code}>
+              <tr key={post.code}>
                 <td>< input id='delete' name='delete[]' type={'checkbox'} onClick={() => EnableOption('deletesettingsimage', 'input[id="delete"]')} value={post.code}></input></td>
                 <td>{post.code} </td>
 
@@ -212,7 +212,7 @@ export default function SubsettingsTemplate({ posts }) {
       //console.log('Settings Dats: ' + settingData);
       try {
 
-        const res = await FetchData('https://sktest87.000webhostapp.com/deletesettings.php', 'post', deleteSettinges,true);
+        const res = await FetchData('https://sktest87.000webhostapp.com/deletesettings.php', 'post', deleteSettinges, true);
         var posts = await res.text();
         if (posts != null) {
 
@@ -243,7 +243,7 @@ export default function SubsettingsTemplate({ posts }) {
     console.log('Settings Dats: ' + settingData);
     try {
 
-      const res = await FetchData('https://sktest87.000webhostapp.com/addsettings.php', 'post', settingData,true);
+      const res = await FetchData('https://sktest87.000webhostapp.com/addsettings.php', 'post', settingData, true);
 
       var posts = await res.text();
 
@@ -282,13 +282,13 @@ export async function getServerSideProps(params) {
   const data = { code: params.query.code };
   try {
 
-    const result = await FetchData('https://sktest87.000webhostapp.com/loadsettings.php', 'post', data,true);
+    const result = await FetchData('https://sktest87.000webhostapp.com/loadsettings.php', 'post', data, true);
 
 
-  
 
 
-  
+
+
 
 
     posts = await result.json();
