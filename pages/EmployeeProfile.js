@@ -151,7 +151,7 @@ const [inputs, setInputs] = useState({});
 
                                 {/*<!--Gender-->*/}
                                 <label htmlFor=""><span>Gender :</span><select id="Gender" title='userdefined' name="Gender" onChange={handleChange} onBlur={handleFocusOut} required >
-                                    <option title='userdefined' value='' selected>Choose</option>
+                                    <option title='userdefined' value=''>Choose</option>
                                     <option value="1">male</option>
                                     <option value="2">Female</option>
 
@@ -337,7 +337,7 @@ const [inputs, setInputs] = useState({});
 
         try {
            
-            const result = await FetchData('https://sktest87.000webhostapp.com/loademployeeprofilesettings.php','post','',false);
+            const result = await FetchData('https://test87.online/loademployeeprofilesettings.php','post','',false);
            
 
             posts = await result.json();
@@ -551,11 +551,21 @@ const [inputs, setInputs] = useState({});
             var posts = await result.text();
             console.log('post Data: ' + posts);
 
+            
+            
+            if (posts.includes('Error Add Employee Duplicate entry')) {
+                alert('Employee ID is already used');
+               
+            }
+
+            if (posts.includes('Error Add Allowance Duplicate entry')) {
+                alert('you can not add allowance from the same type');
+               
+            }
 
 
 
-
-            if (posts.trim() == 'data added successfully') {
+            else if (posts.trim() == 'data added successfully') {
                 document.getElementById('myModal').style.display = 'none'
                 //router.push(router.pathname.concat('?','code=',router.query.code,'&path=',router.query.path),router.asPath);
                 router.push({ pathname: router.pathname, query: { code: router.query.code, path: router.query.path } }, router.asPath);
