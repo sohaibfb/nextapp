@@ -285,7 +285,7 @@ export default function FinancialTransactionsTemplate({ posts }) {
 
       try {
 
-        const result = await FetchData('https://sktest87.000webhostapp.com/loademployeesearch.php', 'post', searchEmployee, true);
+        const result = await FetchData('https://test87.online/loademployeesearch.php', 'post', searchEmployee, true);
         var posts = await result.json();
 
 
@@ -380,7 +380,7 @@ export default function FinancialTransactionsTemplate({ posts }) {
 
       const data = { code: code, ID: id };
       try {
-        const result = await FetchData('https://sktest87.000webhostapp.com/loademployeetransactionsdetails.php', 'post', data, true);
+        const result = await FetchData('https://test87.online/loademployeetransactionsdetails.php', 'post', data, true);
 
 
 
@@ -468,7 +468,7 @@ export default function FinancialTransactionsTemplate({ posts }) {
       const transDetails = { code: code };
 
       try {
-        const res = await FetchData('https://sktest87.000webhostapp.com/loadsettings.php', 'post', transDetails, true)
+        const res = await FetchData('https://test87.online/loadsettings.php', 'post', transDetails, true)
 
 
 
@@ -527,7 +527,7 @@ export default function FinancialTransactionsTemplate({ posts }) {
       const transDetails = { code: router.query.code, deletesettingsarray: deleteArray };
       console.log('Settings Dats: ' + settingData);
       try {
-        const res = await FetchData('https://sktest87.000webhostapp.com/deletesettings.php', 'post', transDetails, true);
+        const res = await FetchData('https://test87.online/deletesettings.php', 'post', transDetails, true);
 
 
         console.log('Settings Data: ' + settingData);
@@ -572,7 +572,7 @@ export default function FinancialTransactionsTemplate({ posts }) {
 
 
     try {
-      const res = await FetchData('https://sktest87.000webhostapp.com/savetransaction.php', 'post', transDetails, true);
+      const res = await FetchData('https://test87.online/savetransaction.php', 'post', transDetails, true);
 
 
 

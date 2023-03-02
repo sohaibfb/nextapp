@@ -106,7 +106,7 @@ export default function SalariesTransactions() {
     
       try {
   
-        const res = await FetchData('https://sktest87.000webhostapp.com/calculatesalary.php', 'post', calculationData, true);
+        const res = await FetchData('https://test87.online/calculatesalary.php', 'post', calculationData, true);
   
         var posts = await res.text();
   

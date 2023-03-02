@@ -535,7 +535,7 @@ const [inputs, setInputs] = useState({});
         
         console.log('employeedata: ' + JSON.stringify(employeedata));
         try {
-            const result = await FetchData('https://sktest87.000webhostapp.com/addemployee.php','post',employeedata,true);
+            const result = await FetchData('https://test87.online/addemployee.php','post',employeedata,true);
 
                
                 
@@ -614,7 +614,7 @@ export async function getServerSideProps(params) {
 
 
     try {
-        const result =await FetchData('https://sktest87.000webhostapp.com/loademployeedata.php','post','',false);
+        const result =await FetchData('https://test87.online/loademployeedata.php','post','',false);
       
 
  
